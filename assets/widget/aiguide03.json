@@ -1,0 +1,317 @@
+{
+    "fonts":
+	[
+		{"path" : "font/Pretendard-Regular.ttf"},
+		{"path" : "font/Pretendard-Medium.ttf"},
+		{"path" : "font/Pretendard-SemiBold.ttf"},
+		{"path" : "font/Pretendard-Bold.ttf"},
+		{"path" : "font/Inter-VariableFont_opsz,wght.ttf"}
+	],
+	"version" : "0.2.1",
+	"datatab" : 
+	[
+		{"title" : "My O3 Data", "icon" : "server"},
+		{"title" : "My Case", "icon" : "folder"}
+	],
+	"data_key" : 
+	[
+		{"title" : "Patient ID", "key1" : "patient_id", "key2" : "PatientID"},
+		{"title" : "Patient Name", "key1" : ["patient_name", "patient_age", "patient_sex"], "key2" : ["PatientName", "PatientAge", "PatientSex"] },
+		{"title" : "Date", "key1" : "study_date", "key2" : "StudyDate"},
+		{"title" : "Description", "key1" : "study_desc", "key2" : "StudyDescription"},
+		{"title" : "Analysis", "key1" : "start", "key2" : "start"},
+		{"title" : "Details", "key1" : "-", "key2" : "-"}
+	],
+	"data_sort" : ["Newest", "Oldest", "Name"],
+	"viewer_buttonset" :
+	[
+		{ "name" : "show_dicom", "dom" : "show_dicom.v1", "type" : "toggle", "title" : "Volume Rendering", "tooltip" : 130 },
+		{ "name" : "seg_map", "dom" : "seg_map", "type" : "toggle", "title" : "Segmentation Map", "tooltip" : 130 },
+		{ "name" : "middle_cross", "dom" : "middle_cross", "type" : "toggle", "title" : "Middle Cross", "tooltip" : 100 },
+		{ "name" : "show_datum", "dom" : "show_datum", "type" : "toggle", "title" : "Show Datum", "tooltip" : 100 },
+		{ "name" : "rail", "dom" : "show_actor_t.v1", "type" : "toggle", "title" : "Rail On/Off", "tooltip" : 100 },
+		{ "name" : "reset_matrix", "dom" : "reset_matrix", "type" : "normal", "title" : "Reset", "tooltip" : 60 }
+	],
+	"step" : 
+	[
+		{ "title" : "Implant Placement", "uiname" : "implant", "width" : 180 }, 
+		{ "title" : "Guide Create", "uiname" : "guide", "width" : 150 }, 
+		{"title" : "Guide Print", "uiname" : "print", "width" : 140 }
+	],
+	"toolbar" : [ "save", "pen", "msg", "preset", "camctrl" ],
+	"presets" : [ "Bone and Skin 1", "Bone and Skin 2", "Bone and Skin 3", "Skin", "Bone 1", "Bone 2" ],
+	"control" : 
+	[
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}, 
+			{"title" : "Scale", "header" : "s", "properties" : ["x", "y", "z"]}
+		],
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}
+		]
+	],
+	"implant" : 
+	[
+		{
+			"brand" : "Cybermed",
+			"icon_name" : "cybermed",
+			"product_line" : 
+			[
+				{
+					"name" : "CORE1", 
+					"product" : 
+					[
+						{ "name": "C1M3008", "diameters": "3.0", "length": "8.5" },
+						{ "name": "C1M3010", "diameters": "3.0", "length": "10.0" },
+						{ "name": "C1M3011", "diameters": "3.0", "length": "11.5" },
+						{ "name": "C1M3013", "diameters": "3.0", "length": "13.0" },
+						{ "name": "C1M3508", "diameters": "3.5", "length": "8.5" },
+						{ "name": "C1M3510", "diameters": "3.5", "length": "10.0" },
+						{ "name": "C1M3511", "diameters": "3.5", "length": "11.5" },
+						{ "name": "C1M3513", "diameters": "3.5", "length": "13.0" },
+						{ "name": "C1R4007", "diameters": "4.0", "length": "7.0" },
+						{ "name": "C1R4008", "diameters": "4.0", "length": "8.5" },
+						{ "name": "C1R4010", "diameters": "4.0", "length": "10.0" },
+						{ "name": "C1R4011", "diameters": "4.0", "length": "11.5" },
+						{ "name": "C1R4013", "diameters": "4.0", "length": "13.0" },
+						{ "name": "C1R4507", "diameters": "4.5", "length": "7.0" },
+						{ "name": "C1R4508", "diameters": "4.5", "length": "8.5" },
+						{ "name": "C1R4510", "diameters": "4.5", "length": "10.0" },
+						{ "name": "C1R4511", "diameters": "4.5", "length": "11.5" },
+						{ "name": "C1R4513", "diameters": "4.5", "length": "13.0" },
+						{ "name": "C1R5007", "diameters": "5.0", "length": "7.0" },
+						{ "name": "C1R5008", "diameters": "5.0", "length": "8.5" },
+						{ "name": "C1R5010", "diameters": "5.0", "length": "10.0" },
+						{ "name": "C1R5011", "diameters": "5.0", "length": "11.5" },
+						{ "name": "C1R5013", "diameters": "5.0", "length": "13.0" },
+						{ "name": "C1W6007", "diameters": "6.0", "length": "7.0," },
+						{ "name": "C1W6008", "diameters": "6.0", "length": "8.5" },
+						{ "name": "C1W6010", "diameters": "6.0", "length": "10.0" },
+						{ "name": "C1WZ6007", "diameters": "6.0", "length": "7.0" },
+						{ "name": "C1WZ6008", "diameters": "6.0", "length": "8.5" },
+						{ "name": "C1WZ6010", "diameters": "6.0", "length": "10.0" }
+					]
+				},
+				{
+					"name" : "CORE1 ES", 
+					"product" : 
+					[
+						{ "name": "C1R5006DB0", "diameters": "5.0", "length": "6.0" },
+						{ "name": "C1R5006DB1", "diameters": "5.0", "length": "6.0" },
+						{ "name": "C1R5006DB2", "diameters": "5.0", "length": "6.0" }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Nobel Biocare",
+			"icon_name" : "nobel_biocare",
+			"product_line" : 
+			[
+				{
+					"name" : "Nobel Active", 
+					"product" : 
+					[
+						{ "name" : "34125", "diameters" : "3.50", "length" : "10.00" }, 
+						{ "name" : "34126", "diameters" : "3.50", "length" : "11.50" }, 
+						{ "name" : "34127", "diameters" : "3.50", "length" : "13.00" }, 
+						{ "name" : "34128", "diameters" : "3.50", "length" : "15.00" }, 
+						{ "name" : "34131", "diameters" : "4.30", "length" : "10.00" }, 
+						{ "name" : "34132", "diameters" : "4.30", "length" : "11.50" }, 
+						{ "name" : "34133", "diameters" : "4.30", "length" : "13.00" }, 
+						{ "name" : "34134", "diameters" : "4.30", "length" : "15.00" },
+						{ "name" : "34137", "diameters" : "5.00", "length" : "10.00" }, 
+						{ "name" : "34138", "diameters" : "5.00", "length" : "11.50" }, 
+						{ "name" : "34139", "diameters" : "5.00", "length" : "13.00" }, 
+						{ "name" : "34140", "diameters" : "5.00", "length" : "15.00" }
+					]
+				},
+				{
+					"name" : "Nobel Biocare N1", 
+					"product" : 
+					[
+						{ "name" : "300857", "diameters" : "3.65", "length" : "9.00" }, 
+						{ "name" : "300858", "diameters" : "3.65", "length" : "11.00" }, 
+						{ "name" : "300859", "diameters" : "3.65", "length" : "13.00" }, 
+						{ "name" : "300860", "diameters" : "4.20", "length" : "7.00" }, 
+						{ "name" : "300861", "diameters" : "4.20", "length" : "9.00" }, 
+						{ "name" : "300862", "diameters" : "4.20", "length" : "11.00" }, 
+						{ "name" : "300863", "diameters" : "4.20", "length" : "13.00" }
+					]
+				},
+				{
+					"name" : "Nobel Replace Straight", 
+					"product" :
+					[
+						{ "name" : "32160", "diameters" : "3.50", "length" : "10.00" }, 
+						{ "name" : "32161", "diameters" : "3.50", "length" : "11.50" }, 
+						{ "name" : "32162", "diameters" : "3.50", "length" : "13.00" }, 
+						{ "name" : "32163", "diameters" : "3.50", "length" : "15.00" }, 
+						{ "name" : "32181", "diameters" : "4.00", "length" : "10.00" }, 
+						{ "name" : "32182", "diameters" : "4.00", "length" : "11.50" }, 
+						{ "name" : "32183", "diameters" : "4.00", "length" : "13.00" }, 
+						{ "name" : "32184", "diameters" : "4.00", "length" : "15.00" },
+						{ "name" : "32185", "diameters" : "4.00", "length" : "18.00" }, 
+						{ "name" : "32186", "diameters" : "5.00", "length" : "10.00" }, 
+						{ "name" : "32187", "diameters" : "5.00", "length" : "11.50" }, 
+						{ "name" : "32188", "diameters" : "5.00", "length" : "13.00" }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Zimmer Dental",
+			"icon_name" : "zimmer_dental",
+			"product_line" : 
+			[
+				{
+					"name" : "Tapered Screw-Vent Implant System", 
+					"product" :
+					[
+						{ "name" : "TSV4B8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4B10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4B11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4B13", "diameters" : 4.10, "length" : 13.00 }, 
+						{ "name" : "TSV4B16", "diameters" : 4.10, "length" : 16.00 }, 
+						{ "name" : "TSV4H8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4H10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4H11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4H13", "diameters" : 4.10, "length" : 13.00 },
+						{ "name" : "TSV4H16", "diameters" : 4.10, "length" : 16.00 },
+						{ "name" : "TSV6B8", "diameters" : 6.00, "length" : 8.00 }, 
+						{ "name" : "TSV6B10", "diameters" : 6.00, "length" : 10.00 }, 
+						{ "name" : "TSV6B11", "diameters" : 6.00, "length" : 11.50 }, 
+						{ "name" : "TSV6B13", "diameters" : 6.00, "length" : 13.00 },
+						{ "name" : "TSV6B16", "diameters" : 6.00, "length" : 16.00 }
+					]
+				}
+			]
+		}
+	],
+	"surgicalkit" : 
+	[
+		{ "name" : "In2Guide Universal", "manufacturer" : "Cybermed" },
+		{ "name" : "In2Guide Basic", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE1 Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE D Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE Universal Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE Sinus Master Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "Camlog Kit", "manufacturer" : "Camlog" },
+		{ "name" : "DMAX Final Kit", "manufacturer" : "DMAX" },
+		{ "name" : "DMAX Kit", "manufacturer" : "DMAX" },
+		{ "name" : "Dentis Kit" , "manufacturer" : "Dentis" },
+		{ "name" : "Glidewell Laboratories", "manufacturer" : "Glidewell" }
+	],
+	"tooth_upper" : 
+	[
+		{"x" : 1, "y" : 0, "w" : 17, "h" : 20},
+		{"x" : 18, "y" : 7, "w" : 14, "h" : 17},
+		{"x" : 32, "y" : 18, "w" : 14, "h" : 15},
+		{"x" : 36, "y" : 34, "w" : 20, "h" : 12},
+		{"x" : 42, "y" : 46, "w" : 18, "h" : 17},
+		{"x" : 50, "y" : 64, "w" : 17, "h" : 17},
+		{"x" : 52, "y" : 84, "w" : 20, "h" : 20},
+		{"x" : 54, "y" : 106, "w" : 22, "h" : 20}
+	],
+	"tooth_lower" : 
+	[
+		{"x" : 63, "y" : 109, "w" : 11, "h" : 17},
+		{"x" : 50, "y" : 106, "w" : 12, "h" : 15},
+		{"x" : 37, "y" : 101, "w" : 12, "h" : 13},
+		{"x" : 23, "y" : 86, "w" : 20, "h" : 14},
+		{"x" : 15, "y" : 68, "w" : 20, "h" : 17},
+		{"x" : 6, "y" : 47, "w" : 20, "h" : 20},
+		{"x" : 1, "y" : 24, "w" : 20, "h" : 21},
+		{"x" : 0, "y" : 0, "w" : 21, "h" : 22}
+	],
+	"crown" : [ "Generic", "Generic - smooth", "Hd", "MatRoberts", "Nondas Vlachopoulos", "Priti_Q" ],
+	"colorset" : [ "#F22D3E", "#F2C32D", "#56D267", "#1574EF", "#8a8a8a", "#000000" ],
+	"crm_details" : 
+	[
+		{
+			"title" : "Patient ID",
+			"key0" : "PatientID",
+			"key1" : "patient_id"
+		},
+		{
+			"title" : "Patient Name",
+			"key0" : "PatientName",
+			"key1" : "patient_name"
+		},
+		{
+			"title" : "Patient Sex",
+			"key0" : "PatientSex",
+			"key1" : "patient_sex"
+		},
+		{
+			"title" : "Patient Age",
+			"key0" : "PatientAge",
+			"key1" : "patient_age"
+		},
+		{
+			"title" : "Number of Series",
+			"key0" : "NumberOfStudyRelatedSeries",
+			"key1" : "series_count"
+		},
+		{
+			"title" : "Number of Images",
+			"key0" : "NumberOfStudyRelatedInstances",
+			"key1" : "image_count"
+		},
+		{
+			"title" : "Study Date",
+			"key0" : "StudyDate",
+			"key1" : "study_date"
+		},
+		{
+			"title" : "Study Time",
+			"key0" : "StudyTime",
+			"key1" : "study_time"
+		},
+		{
+			"title" : "Study Description",
+			"key0" : "StudyDescription",
+			"key1" : "study_desc"
+		},
+		{
+			"title" : "Study ID",
+			"key0" : "StudyID",
+			"key1" : "study_id"
+		},
+		{
+			"title" : "Study Instance UID",
+			"key0" : "StudyInstanceUID",
+			"key1" : "study_uid"
+		},
+		{
+			"title" : "Series Instance UID",
+			"key0" : "SeriesInstanceUID",
+			"key1" : "series_uid"
+		},
+		{
+			"title" : "Comment",
+			"key0" : "StudyComments",
+			"key1" : "comment"
+		},
+		{
+			"title" : "Study Path",
+			"key0" : "",
+			"key1" : "dirpath"
+		}
+	],
+	"teeth" : 
+	[
+		11, 12, 13, 14, 15, 16, 17, 18, 
+		21, 22, 23, 24, 25, 26, 27, 28,
+		31, 32, 33, 34, 35, 36, 37, 38,
+		41, 42, 43, 44, 45, 46, 47, 48
+	],
+	"teeth_implant" : {
+		"11" : 0, "12" : 0, "13" : 0, "14" : 0, "15" : 0, "16" : 0, "17" : 0, "18" : 0,
+		"21" : 0, "22" : 0, "23" : 0, "24" : 0, "25" : 0, "26" : 0, "27" : 0, "28" : 0,
+		"31" : 0, "32" : 0, "33" : 0, "34" : 0, "35" : 0, "36" : 0, "37" : 0, "38" : 0,
+		"41" : 0, "42" : 0, "43" : 0, "44" : 0, "45" : 0, "46" : 0, "47" : 0, "48" : 0
+	}
+}

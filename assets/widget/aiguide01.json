@@ -1,0 +1,252 @@
+{
+    "fonts":
+	[
+		{"path" : "font/KIA_Bold.ttf"},
+		{"path" : "font/NanumSquareB.ttf"},
+		{"path" : "font/Roboto-VariableFont_wdth,wght.ttf"},
+		{"path" : "font/Inconsolata-VariableFont_wdth,wght.ttf"},
+		{"path" : "font/Montserrat-VariableFont_wght.ttf"},
+		{"path" : "font/Outfit-VariableFont_wght.ttf"},
+		{"path" : "font/Pretendard-Regular.ttf"},
+		{"path" : "font/Pretendard-Medium.ttf"},
+		{"path" : "font/Pretendard-SemiBold.ttf"},
+		{"path" : "font/Pretendard-Bold.ttf"}
+	],
+	"version" : "0.1.0",
+	"data_key" : 
+	[
+		{"title" : "Patient ID", "key1" : "patient_id", "key2" : "PatientID"},
+		{"title" : "Patient Name", "key1" : "patient_name", "key2" : "PatientName"},
+		{"title" : "Age", "key1" : "patient_age", "key2" : "PatientAge"},
+		{"title" : "Sex", "key1" : "patient_sex", "key2" : "PatientSex"},
+		{"title" : "Date", "key1" : "study_date", "key2" : "StudyDate"},
+		{"title" : "Images", "key1" : "image_count", "key2" : "series.0.Modality"},
+		{"title" : "Description", "key1" : "study_desc", "key2" : "StudyDescription"},
+		{"title" : "Analysis", "key1" : "start", "key2" : "start"},
+		{"title" : "Details", "key1" : "-", "key2" : "-"}
+	],
+	"data_sort" : ["Newest", "Oldest", "Name"],
+	"toolbar" : [ "pen", "msg", "preset", "camctrl" ],
+	"presets" : [ "presets_airways", "presets_angio", "presets_bones_bw", "presets_bonesandskin2", "presets_skin_bw", "presets_bonesandskin1" ],
+	"view" : ["Panorama", "Axial", "Sagittal", "Coronal"],
+	"control" : 
+	[
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}, 
+			{"title" : "Scale", "header" : "s", "properties" : ["x", "y", "z"]}
+		],
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}
+		]
+	],
+	"implant" : 
+	[
+		{
+			"brand" : "Cybermed",
+			"product_line" : 
+			[
+				{
+					"name" : "Core1", 
+					"product" : 
+					[
+						{ "name" : "C1M3008", "diameters" : "3.00", "length" : "8.50" }, 
+						{ "name" : "C1M3010", "diameters" : "3.00", "length" : "10.00" }, 
+						{ "name" : "C1M3011", "diameters" : "3.00", "length" : "11.50" }, 
+						{ "name" : "C1M3013", "diameters" : "3.00", "length" : "13.00" }, 
+						{ "name" : "C1M3508", "diameters" : "3.50", "length" : "8.50" }, 
+						{ "name" : "C1M3010", "diameters" : "3.50", "length" : "10.00" }, 
+						{ "name" : "C1M3011", "diameters" : "3.50", "length" : "11.50" }, 
+						{ "name" : "C1M3013", "diameters" : "3.50", "length" : "13.00" },
+						{ "name" : "C1M4007", "diameters" : "4.00", "length" : "7.00" }, 
+						{ "name" : "C1M4008", "diameters" : "4.00", "length" : "8.50" }, 
+						{ "name" : "C1M4010", "diameters" : "4.00", "length" : "10.00" }, 
+						{ "name" : "C1M4011", "diameters" : "4.00", "length" : "11.50" }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Nobel Biocare",
+			"product_line" : 
+			[
+				{
+					"name" : "Nobel Active", 
+					"product" : 
+					[
+						{ "name" : "34125", "diameters" : "3.50", "length" : "10.00" }, 
+						{ "name" : "34126", "diameters" : "3.50", "length" : "11.50" }, 
+						{ "name" : "34127", "diameters" : "3.50", "length" : "13.00" }, 
+						{ "name" : "34128", "diameters" : "3.50", "length" : "15.00" }, 
+						{ "name" : "34131", "diameters" : "4.30", "length" : "10.00" }, 
+						{ "name" : "34132", "diameters" : "4.30", "length" : "11.50" }, 
+						{ "name" : "34133", "diameters" : "4.30", "length" : "13.00" }, 
+						{ "name" : "34134", "diameters" : "4.30", "length" : "15.00" },
+						{ "name" : "34137", "diameters" : "5.00", "length" : "10.00" }, 
+						{ "name" : "34138", "diameters" : "5.00", "length" : "11.50" }, 
+						{ "name" : "34139", "diameters" : "5.00", "length" : "13.00" }, 
+						{ "name" : "34140", "diameters" : "5.00", "length" : "15.00" }
+					]
+				},
+				{
+					"name" : "Nobel Biocare N1", 
+					"product" : 
+					[
+						{ "name" : "300857", "diameters" : 3.65, "length" : 9.00 }, 
+						{ "name" : "300858", "diameters" : 3.65, "length" : 11.00 }, 
+						{ "name" : "300859", "diameters" : 3.65, "length" : 13.00 }, 
+						{ "name" : "300860", "diameters" : 4.20, "length" : 7.00 }, 
+						{ "name" : "300861", "diameters" : 4.20, "length" : 9.00 }, 
+						{ "name" : "300862", "diameters" : 4.20, "length" : 11.00 }, 
+						{ "name" : "300863", "diameters" : 4.20, "length" : 13.00 }
+					]
+				},
+				{
+					"name" : "Nobel Replace Straight", 
+					"product" :
+					[
+						{ "name" : "32160", "diameters" : 3.50, "length" : 10.00 }, 
+						{ "name" : "32161", "diameters" : 3.50, "length" : 11.50 }, 
+						{ "name" : "32162", "diameters" : 3.50, "length" : 13.00 }, 
+						{ "name" : "32163", "diameters" : 3.50, "length" : 15.00 }, 
+						{ "name" : "32181", "diameters" : 4.00, "length" : 10.00 }, 
+						{ "name" : "32182", "diameters" : 4.00, "length" : 11.50 }, 
+						{ "name" : "32183", "diameters" : 4.00, "length" : 13.00 }, 
+						{ "name" : "32184", "diameters" : 4.00, "length" : 15.00 },
+						{ "name" : "32185", "diameters" : 4.00, "length" : 18.00 }, 
+						{ "name" : "32186", "diameters" : 5.00, "length" : 10.00 }, 
+						{ "name" : "32187", "diameters" : 5.00, "length" : 11.50 }, 
+						{ "name" : "32188", "diameters" : 5.00, "length" : 13.00 }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Zimmer Dental",
+			"product_line" : 
+			[
+				{
+					"name" : "Tapered Screw-Vent Implant System", 
+					"product" :
+					[
+						{ "name" : "TSV4B8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4B10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4B11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4B13", "diameters" : 4.10, "length" : 13.00 }, 
+						{ "name" : "TSV4B16", "diameters" : 4.10, "length" : 16.00 }, 
+						{ "name" : "TSV4H8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4H10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4H11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4H13", "diameters" : 4.10, "length" : 13.00 },
+						{ "name" : "TSV4H16", "diameters" : 4.10, "length" : 16.00 },
+						{ "name" : "TSV6B8", "diameters" : 6.00, "length" : 8.00 }, 
+						{ "name" : "TSV6B10", "diameters" : 6.00, "length" : 10.00 }, 
+						{ "name" : "TSV6B11", "diameters" : 6.00, "length" : 11.50 }, 
+						{ "name" : "TSV6B13", "diameters" : 6.00, "length" : 13.00 },
+						{ "name" : "TSV6B16", "diameters" : 6.00, "length" : 16.00 }
+					]
+				}
+			]
+		}
+	],
+	"tooth_upper" : 
+	[
+		{"x" : 1, "y" : 0, "w" : 17, "h" : 20},
+		{"x" : 18, "y" : 7, "w" : 14, "h" : 17},
+		{"x" : 32, "y" : 18, "w" : 14, "h" : 15},
+		{"x" : 36, "y" : 34, "w" : 20, "h" : 12},
+		{"x" : 42, "y" : 46, "w" : 18, "h" : 17},
+		{"x" : 50, "y" : 64, "w" : 17, "h" : 17},
+		{"x" : 52, "y" : 84, "w" : 20, "h" : 20},
+		{"x" : 54, "y" : 106, "w" : 22, "h" : 20}
+	],
+	"tooth_lower" : 
+	[
+		{"x" : 63, "y" : 109, "w" : 11, "h" : 17},
+		{"x" : 50, "y" : 106, "w" : 12, "h" : 15},
+		{"x" : 37, "y" : 101, "w" : 12, "h" : 13},
+		{"x" : 23, "y" : 86, "w" : 20, "h" : 14},
+		{"x" : 15, "y" : 68, "w" : 20, "h" : 17},
+		{"x" : 6, "y" : 47, "w" : 20, "h" : 20},
+		{"x" : 1, "y" : 24, "w" : 20, "h" : 21},
+		{"x" : 0, "y" : 0, "w" : 21, "h" : 22}
+	],
+	"crown" : [ "Generic", "Generic - smooth", "Hd", "MatRoberts", "Nondas Vlachopoulos", "Priti_Q" ],
+	"model" : [ "sphere", "cone", "cube", "abut", "crown" ],
+	"colorset" : [ "#F22D3E", "#F2C32D", "#56D267", "#1574EF", "#8a8a8a", "#000000" ],
+	"crm_details" : 
+	[
+		{
+			"title" : "Patient ID",
+			"key" : "patient_id",
+			"key2" : "PatientID"
+		},
+		{
+			"title" : "Patient Name",
+			"key" : "patient_name",
+			"key2" : "PatientName"
+		},
+		{
+			"title" : "Patient Sex",
+			"key" : "patient_sex",
+			"key2" : "PatientSex"
+		},
+		{
+			"title" : "Patient Age",
+			"key" : "patient_age",
+			"key2" : "PatientAge"
+		},
+		{
+			"title" : "Number of Series",
+			"key" : "series_count",
+			"key2" : "NumberOfStudyRelatedSeries"
+		},
+		{
+			"title" : "Number of Images",
+			"key" : "image_count",
+			"key2" : "NumberOfStudyRelatedInstances"
+		},
+		{
+			"title" : "Study Date",
+			"key" : "study_date",
+			"key2" : "StudyDate"
+		},
+		{
+			"title" : "Study Time",
+			"key" : "study_time",
+			"key2" : "StudyTime"
+		},
+		{
+			"title" : "Study Description",
+			"key" : "study_desc",
+			"key2" : "StudyDescription"
+		},
+		{
+			"title" : "Study ID",
+			"key" : "study_id",
+			"key2" : "StudyID"
+		},
+		{
+			"title" : "Study Instance UID",
+			"key" : "study_uid",
+			"key2" : "StudyInstanceUID"
+		},
+		{
+			"title" : "Series Instance UID",
+			"key" : "series_uid",
+			"key2" : "SeriesInstanceUID"
+		},
+		{
+			"title" : "Comment",
+			"key" : "comment",
+			"key2" : "StudyComments"
+		},
+		{
+			"title" : "Study Path",
+			"key" : "dirpath",
+			"key2" : ""
+		}
+	],
+	"sub_folder" : [ 2021, 2022, 2023 ]
+}

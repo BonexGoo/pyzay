@@ -1,0 +1,50 @@
+[
+    {
+		"name":"mpr",
+        "title":"MPR",
+        "views":
+        [
+            { "name" : "Coronal", "style" : "reslice_front", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"1", "x":"50", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v3", "channel":"1", "x":"0", "y":"50", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "3D", "style" : "volume", "id" : "v4", "channel":"2", "x":"50", "y":"50", "w":"50", "h":"50", "color":"#3b3b3b" }
+        ]
+    },
+	{
+		"name":"side_by_side",
+        "title":"Side by Side",
+        "views":
+        [
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"50", "h":"100", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"2", "x":"50", "y":"0", "w":"50", "h":"100", "color":"#000000" }
+        ]
+    },
+	{
+		"name":"mpr_2_4",
+        "title":"MPR 2X4",
+        "views":
+        [
+            { "name" : "coronal", "style" : "reslice_front", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "sagittal", "style" : "reslice_side", "id" : "v2", "channel":"2", "x":"25", "y":"0", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "axial", "style" : "reslice_top", "id" : "v3", "channel":"3", "x":"50", "y":"0", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "3d", "style" : "volume", "id" : "v4", "channel":"4", "x":"75", "y":"0", "w":"25", "h":"50", "color":"#3b3b3b" },
+            { "name" : "coronal", "style" : "reslice_front", "id" : "v5", "channel":"1", "x":"0", "y":"50", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "sagittal", "style" : "reslice_side", "id" : "v6", "channel":"2", "x":"25", "y":"50", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "axial", "style" : "reslice_top", "id" : "v7", "channel":"3", "x":"50", "y":"50", "w":"25", "h":"50", "color":"#000000" },
+            { "name" : "3d", "style" : "volume", "id" : "v8", "channel":"4", "x":"75", "y":"50", "w":"25", "h":"50", "color":"#3b3b3b" }
+        ]
+    },
+	{
+		"name":"panorama",
+        "title":"Panorama",
+        "views":
+        [
+            { "name" : "Panorama", "style" : "reslice_front", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"50", "h":"25", "color":"#000000" },
+            { "name" : "Panorama Thickness MPR", "style" : "reslice_front", "id" : "v2", "channel":"1", "x":"0", "y":"25", "w":"50", "h":"25", "color":"#000000" },
+            { "name" : "Panorama-VR", "style" : "reslice_front", "id" : "v3", "channel":"1", "x":"0", "y":"50", "w":"50", "h":"25", "color":"#000000" },
+            { "name" : "Panorama-MIP", "style" : "reslice_front", "id" : "v4", "channel":"1", "x":"0", "y":"75", "w":"50", "h":"25", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v5", "channel":"2", "x":"50", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "3D", "style" : "volume", "id" : "v6", "channel":"3", "x":"50", "y":"50", "w":"50", "h":"50", "color":"#3b3b3b" }
+        ]
+    }
+]

@@ -1,0 +1,17 @@
+{
+    "fonts":
+	[
+		{"path" : "font/KIA_Bold.ttf"},
+		{"path" : "font/Montserrat-VariableFont_wght.ttf"}
+	],
+	"sw" : 
+	[ 
+		{"title" : "POC", "type" : "poc", "name" : "poc", "ver_data" : "2025.04" }, 
+		{"title" : "VTK.LAB", "type" : "sw", "name" : "vtklab", "ver_data" : "2025.05" }, 
+		{"title" : "AIGuideV01", "type" : "aiguide", "name" : "aiguide01", "ver_date" : "2025．03" },
+		{"title" : "AIGuideV02", "type" : "aiguide", "name" : "aiguide02", "ver_date" : "2025．04" },
+		{"title" : "AIGuideV03", "type" : "aiguide", "name" : "aiguide03", "ver_date" : "2025．04" },
+		{"title" : "AIGuideV04_A", "type" : "aiguide", "name" : "aiguide04a", "ver_date" : "2025．06" },
+		{"title" : "AIGuideV04_B", "type" : "aiguide", "name" : "aiguide04b", "ver_date" : "2025．06" }
+	]
+}

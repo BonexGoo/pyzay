@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+  <style>
+    body {
+      position: relative;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+    }
+    .python-log {
+      position: absolute;
+      left: 100px;
+      top: 5px;
+      width: 800px;
+      height: 50px;
+      font-size: 14px;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" class="python-log" value="Pyodide ready." disabled>
+  <script>
+    const pyodideMap = new Map();
+
+    // control
+    async function boss_start(pid, filename, args)
+    {
+        if(!pyodideMap.has(pid))
+        {
+            const pyodide = await loadPyodide();
+            pyodideMap.set(pid, pyodide);
+            try
+            {
+                const stateRes = await fetch("state.py");
+                const stateCode = await stateRes.text();
+                await pyodide.runPythonAsync(`
+                import types
+                import sys
+
+                state = types.ModuleType("state")
+                exec(${JSON.stringify(stateCode)}, state.__dict__)
+                sys.modules["state"] = state
+                `);
+
+                const pyres = await fetch(filename);
+                pycode = await pyres.text();
+                if(args !== "")
+                {
+                    pycode = pycode.replace(`"###BOSS_ARGS###"`, args);
+                }
+                await pyodide.runPythonAsync(pycode);
+                _log(`${pid}: ${filename} running.`);
+            }
+            catch(err) {_error(`${pid}: ${err}`);}
+        }
+        else {_warn(`Pyodide with ${pid} is already running.`);}
+    }
+    function boss_stop(pid)
+    {
+        const pyodide = pyodideMap.get(pid);
+        if(pyodide)
+        {
+            pyodideMap.delete(pid);
+            _log(`${pid}: deleted.`);
+        }
+    }
+    function boss_stop_all()
+    {
+        for(const pid of pyodideMap.keys())
+        {
+            pyodideMap.delete(pid);
+        }
+        _log(`all deleted.`);
+    }
+    async function boss_call(pid, func, ...args)
+    {
+        const pyodide = pyodideMap.get(pid);
+        if(pyodide)
+        {
+            try
+            {
+                const arglist = args.map(arg => JSON.stringify(arg)).join(",");
+                await pyodide.runPythonAsync(`${func}(${arglist})`);
+            }
+            catch(err)
+            {_error(`${pid}: ${err}`);}
+        }
+        else {_warn(`No running Pyodide instance for ${pid}.`);}
+    }
+
+    // dom
+    function boss_log(text)
+    {
+        BossChannel.invoke("boss_log", text);
+    }
+    function boss_set(key, value)
+    {
+        BossChannel.invoke("boss_set", key, value);
+    }
+    function boss_setjson(keyhead, json)
+    {
+        BossChannel.invoke("boss_setjson", keyhead, json);
+    }
+    async function boss_get(key)
+    {
+        return await returnfunc.call("boss_get", key);
+    }
+    function boss_rem(keyhead)
+    {
+        BossChannel.invoke("boss_rem", keyhead);
+    }
+    function boss_gluecall(name, ...args)
+    {
+        BossChannel.invoke("boss_gluecall", name, ...args);
+    }
+    function boss_jumpcall(name)
+    {
+        BossChannel.invoke("boss_jumpcall", name);
+    }
+    // dom-return
+    function boss_get_return(id, key)
+    {
+        returnhandler("boss_get", id, key);
+    }
+
+    // file
+    async function boss_findfile(dirpath)
+    {
+        return await returnfunc.call("boss_findfile", dirpath);
+    }
+    async function boss_pickupfile(filter, filetitle)
+    {
+        return await returnfunc.call("boss_pickupfile", filter, filetitle);
+    }
+    async function boss_infofile(filepath)
+    {
+        return await returnfunc.call("boss_infofile", filepath);
+    }
+    async function boss_readfile(filepath)
+    {
+        return await returnfunc.call("boss_readfile", filepath);
+    }
+    async function boss_writefile(filepath, base64)
+    {
+        return await returnfunc.call("boss_writefile", filepath, base64);
+    }
+    async function boss_resetfile(filepath)
+    {
+        return await returnfunc.call("boss_resetfile", filepath);
+    }
+    async function boss_movefile(oldfilepath, newfilepath)
+    {
+        return await returnfunc.call("boss_movefile", oldfilepath, newfilepath);
+    }
+    async function boss_hashfile(filepath)
+    {
+        return await returnfunc.call("boss_hashfile", filepath);
+    }
+    // file-return
+    function boss_findfile_return(id, filenames)
+    {
+        returnhandler("boss_findfile", id, filenames);
+    }
+    function boss_pickupfile_return(id, filepath)
+    {
+        returnhandler("boss_pickupfile", id, filepath);
+    }
+    function boss_infofile_return(id, info)
+    {
+        returnhandler("boss_infofile", id, info);
+    }
+    function boss_readfile_return(id, base64)
+    {
+        returnhandler("boss_readfile", id, base64);
+    }
+    function boss_writefile_return(id, filesize)
+    {
+        returnhandler("boss_writefile", id, filesize);
+    }
+    function boss_resetfile_return(id, flag)
+    {
+        returnhandler("boss_resetfile", id, flag);
+    }
+    function boss_movefile_return(id, flag)
+    {
+        returnhandler("boss_movefile", id, flag);
+    }
+    function boss_hashfile_return(id, sha256)
+    {
+        returnhandler("boss_hashfile", id, sha256);
+    }
+
+    // utility
+    function _error(text)
+    {
+        document.querySelector('.python-log').value = "[error:" + _getline() + "] " + text;
+        console.error(text);
+    }
+    function _warn(text)
+    {
+        document.querySelector('.python-log').value = "[warn:" + _getline() + "] " + text;
+        console.warn(text);
+    }
+    function _log(text)
+    {
+        document.querySelector('.python-log').value = "[log] " + text;
+        console.log(text);
+    }
+    function _getline()
+    {
+        const stack = new Error().stack;
+        const line = stack.split("\n")[3];
+        const match = line.match(/:(\d+):\d+\)?$/);
+        return match? parseInt(match[1]) : null;
+    }
+    const returnfunc = (() =>
+    {
+        let callId = 0;
+        const callbacks = new Map();
+        window.returnhandler = function(name, id, result)
+        {
+            const key = `${name}_${id}`;
+            const callback = callbacks.get(key);
+            if(callback)
+            {
+                callbacks.delete(key);
+                callback(result);
+            }
+        };
+        function call(name, ...args)
+        {
+            return new Promise((resolve) =>
+            {
+                const id = ++callId;
+                const key = `${name}_return_${id}`;
+                callbacks.set(`${name}_${id}`, resolve);
+                BossChannel.invoke(`${name}`, id, ...args);
+            });
+        }
+        return {call};
+    })();
+  </script>
+</body>
+</html>

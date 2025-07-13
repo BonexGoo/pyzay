@@ -1,0 +1,137 @@
+[
+	{
+		"name":"mpr",
+        "title":"MPR",
+        "views":
+        [
+            { "name" : "Coronal", "style" : "reslice_front", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"1", "x":"50", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v3", "channel":"1", "x":"0", "y":"50", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "3D", "style" : "volume", "id" : "v4", "channel":"2", "x":"50", "y":"50", "w":"50", "h":"50", "color":"#3b3b3b" }
+        ]
+    },
+	{
+		"name" : "panorama",
+		"title":"Panorama",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"60", "color":"#ffffff" },
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"ch2", "x":"0", "y":"60", "w":"40", "h":"40", "color":"#000000" },
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v3", "channel":"ch3", "x":"40", "y":"60", "w":"60", "h":"40", "color":"#000000" }
+        ]
+	},
+	{
+		"name" : "planning",
+		"title":"Planning View",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"75", "h":"66", "color":"#ffffff" },
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"ch2", "x":"0", "y":"66", "w":"25", "h":"34", "color":"#000000" },
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v3", "channel":"ch3", "x":"25", "y":"66", "w":"50", "h":"34", "color":"#000000" },
+			{ "name" : "Coronal", "style" : "reslice_front", "id" : "v4", "channel":"ch4", "x":"75", "y":"0", "w":"25", "h":"33", "color":"#000000" },
+            { "name" : "Sagittal", "style" : "reslice_side", "id" : "v5", "channel":"ch4", "x":"75", "y":"33", "w":"25", "h":"33", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v6", "channel":"ch4", "x":"75", "y":"66", "w":"25", "h":"34", "color":"#000000" }
+        ]
+	},
+	{
+		"name" : "old_panorama",
+		"title":"Panorama",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#ffffff" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v2", "channel":"ch2", "align" : "leftbottom", "left" : "25", "bottom" : "25", "w" : "540", "h" : "310", "color":"#000000" },
+			{ "name" : "Axial", "style" : "fixslice_top", "id" : "v3", "channel":"ch3", "align" : "leftbottom", "left" : "565", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" },
+			{ "name" : "Sagittal", "style" : "fixslice_side", "id" : "v4", "channel":"ch4", "align" : "leftbottom", "left" : "885", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" },
+			{ "name" : "Coronal", "style" : "fixslice_front", "id" : "v5", "channel":"ch5", "align" : "leftbottom", "left" : "1205", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" }
+		]
+	},
+	{
+		"name" : "axial",
+		"title":"Axial",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#ffffff" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#000000" }
+		]
+	},
+	{
+		"name" : "sagittal",
+		"title":"Sagittal",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#ffffff" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#000000" }
+		]
+	},
+	{
+		"name" : "coronal",
+		"title":"Coronal",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#ffffff" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Coronal", "style" : "reslice_front", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#000000" }
+		]
+	},
+	{
+		"name" : "dev_panorama",
+		"title":"Panorama",
+		"views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#00ff00" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Axial", "style" : "fixslice_top", "id" : "v2", "channel":"ch2", "align" : "leftbottom", "left" : "25", "bottom" : "25", "w" : "480", "h" : "310", "color":"#00ff00" },
+			{ "name" : "Sagittal", "style" : "fixslice_side", "id" : "v3", "channel":"ch3", "align" : "leftbottom", "left" : "505", "bottom" : "25", "w" : "480", "h" : "310", "color":"#00ff00" },
+			{ "name" : "Coronal", "style" : "fixslice_front", "id" : "v4", "channel":"ch4", "align" : "leftbottom", "left" : "985", "bottom" : "25", "w" : "480", "h" : "310", "color":"#00ff00" }
+		]
+	},
+	{
+		"name" : "dev_axial",
+		"title":"Axial",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#00ff00" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#00ff00" }
+		]
+	},
+	{
+		"name" : "dev_sagittal",
+		"title":"Sagittal",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#00ff00" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#00ff00" }
+		]
+	},
+	{
+		"name" : "dev_coronal",
+		"title":"Coronal",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#00ff00" }
+        ],
+		"minimaps":
+		[
+			{ "name" : "Coronal", "style" : "reslice_front", "id" : "v2", "channel":"1", "align" : "leftbottom", "left" : "45", "bottom" : "95", "w" : "360", "h" : "225", "color":"#00ff00" }
+		]
+	}
+]

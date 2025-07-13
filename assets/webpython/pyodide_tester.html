@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Pyodide 예제</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    textarea { width: 100%; height: 150px; font-family: monospace; }
+    #output { white-space: pre-wrap; background: #f0f0f0; padding: 10px; margin-top: 10px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+  </style>
+  <!-- Pyodide CDN 로드 -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+</head>
+<body>
+  <h1>웹에서 실행하는 Python (Pyodide)</h1>
+  <p>아래에 Python 코드를 입력한 뒤 <strong>Run</strong> 버튼을 누르면 실행 결과가 출력됩니다.</p>
+  
+  <textarea id="py-code">
+# 예: 리스트 합 계산
+nums = [1, 2, 3, 4, 5]
+sum(nums)
+  </textarea>
+  <button id="run-btn">Run</button>
+  
+  <h2>Output:</h2>
+  <div id="output">로딩 중...</div>
+  
+  <script>
+    // Pyodide 초기화
+    let pyodideReadyPromise = loadPyodide({
+      indexURL: "https://cdn.jsdelivr.net/pyodide/v0.24.1/full/"
+    });
+
+    async function runPython() {
+      const outputEl = document.getElementById('output');
+      outputEl.textContent = '실행 중...';
+      try {
+        const pyodide = await pyodideReadyPromise;
+        const code = document.getElementById('py-code').value;
+        // Python 코드 실행
+        let result = await pyodide.runPythonAsync(code);
+        outputEl.textContent = result === undefined ? 'None' : result.toString();
+      } catch (err) {
+        outputEl.textContent = '에러:\n' + err;
+      }
+    }
+
+    // 버튼 클릭 시 실행
+    document.getElementById('run-btn').addEventListener('click', runPython);
+
+    // 초기 로딩 완료 메시지
+    pyodideReadyPromise.then(() => {
+      document.getElementById('output').textContent = 'Pyodide 로딩 완료! 코드를 입력하고 Run 버튼을 눌러보세요.';
+    });
+  </script>
+</body>
+</html>

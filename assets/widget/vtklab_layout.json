@@ -1,0 +1,20 @@
+[
+	{
+		"name" : "test",
+		"title":"Test",
+		"views":
+		[
+            { "name" : "Coronal", "style" : "reslice_front", "id" : "v1", "channel":"1", "x":"0", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"1", "x":"50", "y":"0", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "Axial", "style" : "reslice_top", "id" : "v3", "channel":"1", "x":"0", "y":"50", "w":"50", "h":"50", "color":"#000000" },
+            { "name" : "3D", "style" : "volume", "id" : "v4", "channel":"2", "x":"50", "y":"50", "w":"50", "h":"50", "color":"#3b3b3b" }
+		],
+		"minimaps":
+		[
+			{ "name" : "Panorama", "style" : "panorama", "id" : "m1", "channel":"ch2", "align" : "leftbottom", "left" : "25", "bottom" : "25", "w" : "540", "h" : "310", "color":"#000000" },
+			{ "name" : "Axial", "style" : "fixslice_top", "id" : "m2", "channel":"ch3", "align" : "leftbottom", "left" : "565", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" },
+			{ "name" : "Sagittal", "style" : "fixslice_side", "id" : "m3", "channel":"ch4", "align" : "leftbottom", "left" : "885", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" },
+			{ "name" : "Coronal", "style" : "fixslice_front", "id" : "m4", "channel":"ch5", "align" : "leftbottom", "left" : "1205", "bottom" : "25", "w" : "320", "h" : "310", "color":"#000000" }
+		]
+	}
+]

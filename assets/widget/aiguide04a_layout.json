@@ -1,0 +1,64 @@
+[
+	{
+		"name" : "mpr",
+		"title" : "MPR",
+		"views" : 
+		[
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"50", "h":"50", "color":"#000000"},
+			{ "name" : "Sagittal", "style" : "reslice_side", "id" : "v2", "channel":"ch2", "x":"50", "y":"0", "w":"50", "h":"50", "color":"#000000"},
+			{ "name" : "Coronal", "style" : "reslice_front", "id" : "v3", "channel":"ch3", "x":"0", "y":"50", "w":"50", "h":"50", "color":"#000000"},
+			{ "name" : "3D", "style" : "volume", "id" : "v4", "channel":"ch4", "x":"50", "y":"50", "w":"50", "h":"50", "color":"#ffffff" }
+		]
+	},
+	{
+		"name" : "panorama",
+		"title":"Panorama",
+        "views":
+        [
+			{ "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"60", "h":"60", "color":"#ffffff" },
+			{ "name" : "Cross Surface", "style" : "fixslice_side", "id" : "v2", "channel":"ch2", "x":"60", "y":"0", "w":"40", "h":"60", "color":"#000000"},
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v3", "channel":"ch3", "x":"0", "y":"60", "w":"60", "h":"40", "color":"#000000" },
+			{ "name" : "Axial Panorama Curve", "style" : "reslice_top", "id" : "v4", "channel":"ch4", "x":"60", "y":"60", "w":"40", "h":"40", "color":"#000000"}
+        ]
+	},
+	{
+		"name" : "align",
+		"title":"Align",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"60", "color":"#ffffff" },
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v2", "channel":"ch2", "x":"0", "y":"60", "w":"50", "h":"40", "color":"#000000"},
+			{ "name" : "Cross Sectional", "style" : "fixslice_side", "id" : "v3", "channel":"ch3", "x":"50", "y":"60", "w":"50", "h":"40", "color":"#000000"}
+        ]
+	},
+	{
+		"name" : "waxup",
+		"title":"WaxUp",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"60", "color":"#ffffff" },
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v2", "channel":"ch2", "x":"0", "y":"60", "w":"40", "h":"40", "color":"#000000" },
+			{ "name" : "Axial", "style" : "reslice_top", "id" : "v3", "channel":"ch3", "x":"40", "y":"60", "w":"30", "h":"40", "color":"#000000"},
+			{ "name" : "Cross Sectional", "style" : "fixslice_side", "id" : "v4", "channel":"ch4", "x":"70", "y":"60", "w":"30", "h":"40", "color":"#000000"}
+        ]
+	},
+	{
+		"name" : "planning",
+		"title":"Planning",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"60", "color":"#ffffff" },
+			{ "name" : "Panorama", "style" : "panorama", "id" : "v2", "channel":"ch2", "x":"0", "y":"60", "w":"40", "h":"40", "color":"#000000" },
+			{ "name" : "Implant Cross", "style" : "fixslice_top", "id" : "v3", "channel":"ch3", "x":"40", "y":"60", "w":"30", "h":"40", "color":"#000000"},
+			{ "name" : "Implant Parallel", "style" : "fixslice_side", "id" : "v4", "channel":"ch4", "x":"70", "y":"60", "w":"30", "h":"40", "color":"#000000"}
+        ]
+	},
+	{
+		"name" : "guide",
+		"title":"Guide",
+        "views":
+        [
+            { "name" : "3D", "style" : "volume", "id" : "v1", "channel":"ch1", "x":"0", "y":"0", "w":"100", "h":"100", "color":"#ffffff" }
+        ]
+	}
+]

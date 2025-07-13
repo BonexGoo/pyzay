@@ -1,0 +1,119 @@
+{
+    "fonts":
+	[
+		{"path" : "font/KIA_Bold.ttf"},
+		{"path" : "font/NanumSquareB.ttf"}
+	],
+	"tab" : ["CRM", "Dental"],
+	"model" : [ "sphere", "cone", "cube", "abut", "crown" ],
+	"colorset" : 
+	[
+		{"r" : 245, "g" : 160, "b" : 150},
+		{"r" : 250, "g" : 195, "b" : 115},
+		{"r" : 252, "g" : 230, "b" : 160},
+		{"r" : 160, "g" : 252, "b" : 167},
+		{"r" : 185, "g" : 255, "b" : 249},
+		{"r" : 184, "g" : 190, "b" : 255},
+		{"r" : 252, "g" : 195, "b" : 249},
+		{"r" : 245, "g" : 80, "b" : 81},
+		{"r" : 247, "g" : 152, "b" : 27},
+		{"r" : 247, "g" : 206, "b" : 54},
+		{"r" : 11, "g" : 181, "b" : 62},
+		{"r" : 15, "g" : 210, "b" : 217},
+		{"r" : 69, "g" : 117, "b" : 230},
+		{"r" : 209, "g" : 84, "b" : 240},
+		{"r" : 97, "g" : 17, "b" : 13},
+		{"r" : 153, "g" : 75, "b" : 11},
+		{"r" : 242, "g" : 170, "b" : 0},
+		{"r" : 11, "g" : 71, "b" : 2},
+		{"r" : 11, "g" : 99, "b" : 120},
+		{"r" : 30, "g" : 52, "b" : 100},
+		{"r" : 93, "g" : 37, "b" : 110},
+		{"r" : 255, "g" : 255, "b" : 255},
+		{"r" : 210, "g" : 210, "b" : 210},
+		{"r" : 170, "g" : 170, "b" : 170},
+		{"r" : 135, "g" : 135, "b" : 135},
+		{"r" : 90, "g" : 90, "b" : 90},
+		{"r" : 45, "g" : 45, "b" : 45},
+		{"r" : 0, "g" : 0, "b" : 0}
+	],
+	"crm_details" : 
+	[
+		{
+			"title" : "Patient ID",
+			"key" : "patient_id",
+			"key2" : "PatientID"
+		},
+		{
+			"title" : "Patient Name",
+			"key" : "patient_name",
+			"key2" : "PatientName"
+		},
+		{
+			"title" : "Patient Sex",
+			"key" : "patient_sex",
+			"key2" : "PatientSex"
+		},
+		{
+			"title" : "Patient Age",
+			"key" : "patient_age",
+			"key2" : "PatientAge"
+		},
+		{
+			"title" : "Number of Series",
+			"key" : "series_count",
+			"key2" : "NumberOfStudyRelatedSeries"
+		},
+		{
+			"title" : "Number of Images",
+			"key" : "image_count",
+			"key2" : "NumberOfStudyRelatedInstances"
+		},
+		{
+			"title" : "Study Date",
+			"key" : "study_date",
+			"key2" : "StudyDate"
+		},
+		{
+			"title" : "Study Time",
+			"key" : "study_time",
+			"key2" : "StudyTime"
+		},
+		{
+			"title" : "Study Description",
+			"key" : "study_desc",
+			"key2" : "StudyDescription"
+		},
+		{
+			"title" : "Study ID",
+			"key" : "study_id",
+			"key2" : "StudyID"
+		},
+		{
+			"title" : "Study Instance UID",
+			"key" : "study_uid",
+			"key2" : "StudyInstanceUID"
+		},
+		{
+			"title" : "Series Instance UID",
+			"key" : "series_uid",
+			"key2" : "SeriesInstanceUID"
+		},
+		{
+			"title" : "Comment",
+			"key" : "comment",
+			"key2" : "StudyComments"
+		},
+		{
+			"title" : "Study Path",
+			"key" : "dirpath",
+			"key2" : ""
+		},
+		{
+			"title" : "Thumbnail",
+			"key" : "",
+			"key2" : ""
+		}
+	],
+	"dev" : ["UI Hide", "View Text On/Off"]
+}

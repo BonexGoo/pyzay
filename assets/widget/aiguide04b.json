@@ -1,0 +1,371 @@
+{
+    "fonts":
+	[
+		{"path" : "font/Inter-VariableFont_opsz,wght.ttf"},
+		{"path" : "font/Pretendard-Bold.ttf"},
+		{"path" : "font/Pretendard-SemiBold.ttf"},
+		{"path" : "font/Pretendard-Medium.ttf"},
+		{"path" : "font/Pretendard-Regular.ttf"}
+	],
+	"version" : "0.0.1",
+	"page" : "login",
+	"planning_step" : 1,
+	"login_page" : ["main", "signup"],
+	"social_login" : ["google", "facebook", "microsoft"],
+	"tab_data" : ["My O3 Data", "My Case"],
+	"setting" : ["My Account", "Subscription Plan", "Payment", "Implant Library"],
+	"my_account" : 
+	[
+		{ "name" : "name", "title" : "ID", "test" : "name" },
+		{ "name" : "username", "title" : "Name", "test" : "Dawon Oh" },
+		{ "name" : "email", "title" : "Email", "test" : "dwoh@cybermed.co.kr" },
+		{ "name" : "phone", "title" : "Phone", "test" : "010-1234-1234" },
+		{ "name" : "clinic_name", "title" : "Organization", "test" : "Cybermed" },
+		{ "name" : "locale", "title" : "Locale", "test" : "ko-KR"}
+	],
+	"data_key" : 
+	[
+		{"title" : "Patient ID", "key_local" : "patient_id", "key_server" : "PatientID"},
+		{"title" : "Patient Name", "key_local" : "patient_name", "key_server" : "PatientName"},
+		{"title" : "Age", "key_local" : "patient_age", "key_server" : "PatientAge"},
+		{"title" : "Sex", "key_local" : "patient_sex", "key_server" : "PatientSex"},
+		{"title" : "Type", "key_local" : "modality", "key_server" : "series.0.Modality"},
+		{"title" : "Date", "key_local" : "study_date", "key_server" : "StudyDate"},
+		{"title" : "Description", "key_local" : "study_desc", "key_server" : "StudyDescription"},
+		{"title" : "Analysis", "key_local" : "status_anls", "key_server" : "start"}
+	],
+	"arch_type" : ["Maxilla", "Mandible", "Both Arches" ],
+	"guide_tool" : ["Edit Line", "Edit Thickness", "Add Window/Pole", "Add Text"],
+	"test_data_count" : 1,
+	"data_sort" : ["Newest", "Oldest", "Name"],
+	"toolbar" : 
+	[ 
+		{ "title" : "Windowing", "icon" : "window", "width" : 100 },
+		{ "title" : "Invert", "icon" : "invert", "width" : 100 },
+		{ "title" : "Text Overlay", "icon" : "text", "width" : 110 },
+		{ "title" : "Guideline", "icon" : "cross", "width" : 100 },
+		{ "title" : "HU View", "icon" : "hu", "width" : 100 },
+		{ "title" : "Ruler", "icon" : "ruler", "width" : 80 },
+		{ "title" : "Arrow", "icon" : "arrow", "width" : 80 },
+		{ "title" : "Memo", "icon" : "memo", "width" : 60 },
+		{ "title" : "Angle", "icon" : "protractor", "width" : 80 },
+		{ "title" : "CT Volume Rendering", "icon" : "vr", "width" : 140 },
+		{ "title" : "Segmentation Map", "icon" : "seg", "width" : 140 },
+		{ "title" : "IOS Upper", "icon" : "ios_upper", "width" : 100 },
+		{ "title" : "IOS Lower", "icon" : "ios_lower", "width" : 100 },
+		{ "title" : "Waxup", "icon" : "crown", "width" : 80 },
+		{ "title" : "Fixture", "icon" : "implant", "width" : 80 },
+		{ "title" : "Reset", "icon" : "reset", "width" : 80 }
+	],
+	"patient" : 
+	[
+		{"name" : "Peter", "birth_date" : "1985-03-12", "gender" : "M"},
+		{"name" : "Steven", "birth_date" : "1995-02-02", "gender" : "M"},
+		{"name" : "Mark", "birth_date" : "1965-03-28", "gender" : "M"},
+		{"name" : "Jane", "birth_date" : "1982-12-30", "gender" : "F"},
+		{"name" : "David", "birth_date" : "1976-06-29", "gender" : "M"},
+		{"name" : "Arnold", "birth_date" : "1956-02-16", "gender" : "M"},
+		{"name" : "Vivian", "birth_date" : "1966-05-18", "gender" : "F"},
+		{"name" : "Sophia", "birth_date" : "1968-06-23", "gender" : "F"},
+		{"name" : "Anna", "birth_date" : "1974-01-07", "gender" : "F"}
+	],
+	"presets" : [ "Bone and Skin 1", "Bone and Skin 2", "Bone and Skin 3", "Skin", "Bone 1", "Bone 2" ],
+	"control" : 
+	[
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}, 
+			{"title" : "Scale", "header" : "s", "properties" : ["x", "y", "z"]}
+		],
+		[
+			{"title" : "Rotate", "header" : "r", "properties" : ["x", "y", "w"]}, 
+			{"title" : "Move", "header" : "m", "properties" : ["x", "y", "d"]}
+		]
+	],
+	"implant" : 
+	[
+		{
+			"brand" : "Cybermed",
+			"product_line" : 
+			[
+				{
+					"name" : "CORE1", 
+					"product" : 
+					[
+						{ "name": "C1M3008", "diameters": "ø3.0", "length": "8.5mm" },
+						{ "name": "C1M3010", "diameters": "ø3.0", "length": "10.0mm" },
+						{ "name": "C1M3011", "diameters": "ø3.0", "length": "11.5mm" },
+						{ "name": "C1M3013", "diameters": "ø3.0", "length": "13.0mm" },
+						{ "name": "C1M3508", "diameters": "ø3.5", "length": "8.5mm" },
+						{ "name": "C1M3510", "diameters": "ø3.5", "length": "10.0mm" },
+						{ "name": "C1M3511", "diameters": "ø3.5", "length": "11.5mm" },
+						{ "name": "C1M3513", "diameters": "ø3.5", "length": "13.0mm" },
+						{ "name": "C1R4007", "diameters": "ø4.0", "length": "7.0mm" },
+						{ "name": "C1R4008", "diameters": "ø4.0", "length": "8.5mm" },
+						{ "name": "C1R4010", "diameters": "ø4.0", "length": "10.0mm" },
+						{ "name": "C1R4011", "diameters": "ø4.0", "length": "11.5mm" },
+						{ "name": "C1R4013", "diameters": "ø4.0", "length": "13.0mm" },
+						{ "name": "C1R4507", "diameters": "ø4.5", "length": "7.0mm" },
+						{ "name": "C1R4508", "diameters": "ø4.5", "length": "8.5mm" },
+						{ "name": "C1R4510", "diameters": "ø4.5", "length": "10.0mm" },
+						{ "name": "C1R4511", "diameters": "ø4.5", "length": "11.5mm" },
+						{ "name": "C1R4513", "diameters": "ø4.5", "length": "13.0mm" },
+						{ "name": "C1R5007", "diameters": "ø5.0", "length": "7.0mm" },
+						{ "name": "C1R5008", "diameters": "ø5.0", "length": "8.5mm" },
+						{ "name": "C1R5010", "diameters": "ø5.0", "length": "10.0mm" },
+						{ "name": "C1R5011", "diameters": "ø5.0", "length": "11.5mm" },
+						{ "name": "C1R5013", "diameters": "ø5.0", "length": "13.0mm" },
+						{ "name": "C1W6007", "diameters": "ø6.0", "length": "7.0mm," },
+						{ "name": "C1W6008", "diameters": "ø6.0", "length": "8.5mm" },
+						{ "name": "C1W6010", "diameters": "ø6.0", "length": "10.0mm" },
+						{ "name": "C1WZ6007", "diameters": "ø6.0", "length": "7.0mm" },
+						{ "name": "C1WZ6008", "diameters": "ø6.0", "length": "8.5mm" },
+						{ "name": "C1WZ6010", "diameters": "ø6.0", "length": "10.0mm" }
+					]
+				},
+				{
+					"name" : "CORE1 ES", 
+					"product" : 
+					[
+						{ "name": "C1R5006DB0", "diameters": "ø5.0", "length": "6.0mm" },
+						{ "name": "C1R5006DB1", "diameters": "ø5.0", "length": "6.0mm" },
+						{ "name": "C1R5006DB2", "diameters": "ø5.0", "length": "6.0mm" }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Nobel Biocare",
+			"product_line" : 
+			[
+				{
+					"name" : "Nobel Active", 
+					"product" : 
+					[
+						{ "name" : "34125", "diameters" : "ø3.50", "length" : "10.00mm" }, 
+						{ "name" : "34126", "diameters" : "ø3.50", "length" : "11.50mm" }, 
+						{ "name" : "34127", "diameters" : "ø3.50", "length" : "13.00mm" }, 
+						{ "name" : "34128", "diameters" : "ø3.50", "length" : "15.00mm" }, 
+						{ "name" : "34131", "diameters" : "ø4.30", "length" : "10.00mm" }, 
+						{ "name" : "34132", "diameters" : "ø4.30", "length" : "11.50mm" }, 
+						{ "name" : "34133", "diameters" : "ø4.30", "length" : "13.00mm" }, 
+						{ "name" : "34134", "diameters" : "ø4.30", "length" : "15.00mm" },
+						{ "name" : "34137", "diameters" : "ø5.00", "length" : "10.00mm" }, 
+						{ "name" : "34138", "diameters" : "ø5.00", "length" : "11.50mm" }, 
+						{ "name" : "34139", "diameters" : "ø5.00", "length" : "13.00mm" }, 
+						{ "name" : "34140", "diameters" : "ø5.00", "length" : "15.00mm" }
+					]
+				},
+				{
+					"name" : "Nobel Biocare N1", 
+					"product" : 
+					[
+						{ "name" : "300857", "diameters" : "ø3.65", "length" : "9.00mm" }, 
+						{ "name" : "300858", "diameters" : "ø3.65", "length" : "11.00mm" }, 
+						{ "name" : "300859", "diameters" : "ø3.65", "length" : "13.00mm" }, 
+						{ "name" : "300860", "diameters" : "ø4.20", "length" : "7.00mm" }, 
+						{ "name" : "300861", "diameters" : "ø4.20", "length" : "9.00mm" }, 
+						{ "name" : "300862", "diameters" : "ø4.20", "length" : "11.00mm" }, 
+						{ "name" : "300863", "diameters" : "ø4.20", "length" : "13.00mm" }
+					]
+				},
+				{
+					"name" : "Nobel Replace Straight", 
+					"product" :
+					[
+						{ "name" : "32160", "diameters" : "ø3.50", "length" : "10.00mm" }, 
+						{ "name" : "32161", "diameters" : "ø3.50", "length" : "11.50mm" }, 
+						{ "name" : "32162", "diameters" : "ø3.50", "length" : "13.00mm" }, 
+						{ "name" : "32163", "diameters" : "ø3.50", "length" : "15.00mm" }, 
+						{ "name" : "32181", "diameters" : "ø4.00", "length" : "10.00mm" }, 
+						{ "name" : "32182", "diameters" : "ø4.00", "length" : "11.50mm" }, 
+						{ "name" : "32183", "diameters" : "ø4.00", "length" : "13.00mm" }, 
+						{ "name" : "32184", "diameters" : "ø4.00", "length" : "15.00mm" },
+						{ "name" : "32185", "diameters" : "ø4.00", "length" : "18.00mm" }, 
+						{ "name" : "32186", "diameters" : "ø5.00", "length" : "10.00mm" }, 
+						{ "name" : "32187", "diameters" : "ø5.00", "length" : "11.50mm" }, 
+						{ "name" : "32188", "diameters" : "ø5.00", "length" : "13.00mm" }
+					]
+				}
+			]
+		},
+		{
+			"brand" : "Zimmer Dental",
+			"product_line" : 
+			[
+				{
+					"name" : "Tapered Screw-Vent Implant System", 
+					"product" :
+					[
+						{ "name" : "TSV4B8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4B10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4B11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4B13", "diameters" : 4.10, "length" : 13.00 }, 
+						{ "name" : "TSV4B16", "diameters" : 4.10, "length" : 16.00 }, 
+						{ "name" : "TSV4H8", "diameters" : 4.10, "length" : 8.00 }, 
+						{ "name" : "TSV4H10", "diameters" : 4.10, "length" : 10.00 }, 
+						{ "name" : "TSV4H11", "diameters" : 4.10, "length" : 11.50 }, 
+						{ "name" : "TSV4H13", "diameters" : 4.10, "length" : 13.00 },
+						{ "name" : "TSV4H16", "diameters" : 4.10, "length" : 16.00 },
+						{ "name" : "TSV6B8", "diameters" : 6.00, "length" : 8.00 }, 
+						{ "name" : "TSV6B10", "diameters" : 6.00, "length" : 10.00 }, 
+						{ "name" : "TSV6B11", "diameters" : 6.00, "length" : 11.50 }, 
+						{ "name" : "TSV6B13", "diameters" : 6.00, "length" : 13.00 },
+						{ "name" : "TSV6B16", "diameters" : 6.00, "length" : 16.00 }
+					]
+				}
+			]
+		}
+	],
+	"surgicalkit" : 
+	[
+		{ "name" : "In2Guide Universal", "manufacturer" : "Cybermed" },
+		{ "name" : "In2Guide Basic", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE1 Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE D Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE Universal Guide Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "CORE Sinus Master Kit", "manufacturer" : "Cybermed" },
+		{ "name" : "Camlog Kit", "manufacturer" : "Camlog" },
+		{ "name" : "DMAX Final Kit", "manufacturer" : "DMAX" },
+		{ "name" : "DMAX Kit", "manufacturer" : "DMAX" },
+		{ "name" : "Dentis Kit" , "manufacturer" : "Dentis" },
+		{ "name" : "Glidewell Laboratories", "manufacturer" : "Glidewell" }
+	],
+	"tooth_upper" : 
+	[
+		{"x" : 1, "y" : 0, "w" : 17, "h" : 20},
+		{"x" : 18, "y" : 7, "w" : 14, "h" : 17},
+		{"x" : 32, "y" : 18, "w" : 14, "h" : 15},
+		{"x" : 36, "y" : 34, "w" : 20, "h" : 12},
+		{"x" : 42, "y" : 46, "w" : 18, "h" : 17},
+		{"x" : 50, "y" : 64, "w" : 17, "h" : 17},
+		{"x" : 52, "y" : 84, "w" : 20, "h" : 20},
+		{"x" : 54, "y" : 106, "w" : 22, "h" : 20}
+	],
+	"tooth_lower" : 
+	[
+		{"x" : 63, "y" : 109, "w" : 11, "h" : 17},
+		{"x" : 50, "y" : 106, "w" : 12, "h" : 15},
+		{"x" : 37, "y" : 101, "w" : 12, "h" : 13},
+		{"x" : 23, "y" : 86, "w" : 20, "h" : 14},
+		{"x" : 15, "y" : 68, "w" : 20, "h" : 17},
+		{"x" : 6, "y" : 47, "w" : 20, "h" : 20},
+		{"x" : 1, "y" : 24, "w" : 20, "h" : 21},
+		{"x" : 0, "y" : 0, "w" : 21, "h" : 22}
+	],
+	"crm_details" : 
+	[
+		{
+			"title" : "Patient ID",
+			"key" : "patient_id",
+			"key2" : "PatientID"
+		},
+		{
+			"title" : "Patient Name",
+			"key" : "patient_name",
+			"key2" : "PatientName"
+		},
+		{
+			"title" : "Patient Sex",
+			"key" : "patient_sex",
+			"key2" : "PatientSex"
+		},
+		{
+			"title" : "Patient Age",
+			"key" : "patient_age",
+			"key2" : "PatientAge"
+		},
+		{
+			"title" : "Number of Series",
+			"key" : "series_count",
+			"key2" : "NumberOfStudyRelatedSeries"
+		},
+		{
+			"title" : "Number of Images",
+			"key" : "image_count",
+			"key2" : "NumberOfStudyRelatedInstances"
+		},
+		{
+			"title" : "Study Date",
+			"key" : "study_date",
+			"key2" : "StudyDate"
+		},
+		{
+			"title" : "Study Time",
+			"key" : "study_time",
+			"key2" : "StudyTime"
+		},
+		{
+			"title" : "Study Description",
+			"key" : "study_desc",
+			"key2" : "StudyDescription"
+		},
+		{
+			"title" : "Study ID",
+			"key" : "study_id",
+			"key2" : "StudyID"
+		},
+		{
+			"title" : "Study Instance UID",
+			"key" : "study_uid",
+			"key2" : "StudyInstanceUID"
+		},
+		{
+			"title" : "Series Instance UID",
+			"key" : "series_uid",
+			"key2" : "SeriesInstanceUID"
+		},
+		{
+			"title" : "Comment",
+			"key" : "comment",
+			"key2" : "StudyComments"
+		},
+		{
+			"title" : "Study Path",
+			"key" : "dirpath",
+			"key2" : ""
+		}
+	],
+	"teeth" : 
+	[
+		18, 17, 16, 15, 14, 13, 12, 11,
+		21, 22, 23, 24, 25, 26, 27, 28,
+		38, 37, 36, 35, 34, 33, 32, 31,
+		41, 42, 43, 44, 45, 46, 47, 48
+	],
+	"teeth_status" : 
+	{
+		"18" : 0,
+		"17" : 0,
+		"16" : 0,
+		"15" : 0,
+		"14" : 0,
+		"13" : 0,
+		"12" : 0,
+		"11" : 0,
+		"21" : 0,
+		"22" : 0,
+		"23" : 0,
+		"24" : 0,
+		"25" : 0,
+		"26" : 0,
+		"27" : 0,
+		"28" : 0,
+		"48" : 0,
+		"47" : 0,
+		"46" : 0,
+		"45" : 0,
+		"44" : 0,
+		"43" : 0,
+		"42" : 0,
+		"41" : 0,
+		"31" : 0,
+		"32" : 0,
+		"33" : 0,
+		"34" : 0,
+		"35" : 0,
+		"36" : 0,
+		"37" : 0,
+		"38" : 0
+	}
+}
