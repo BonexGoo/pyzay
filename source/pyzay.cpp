@@ -337,6 +337,8 @@ bool PyZayData::CheckWidget()
 void PyZayData::InitWidget()
 {
     auto& NewZayson = mWidget->Init("PyZayData", nullptr, [](chars name)->const Image* {return &((const Image&) R(name));});
+    ////////////////////////////////////////////////////////////////////////////////
+    // update
     NewZayson.AddGlue("update", ZAY_DECLARE_GLUE(params, this) // 업데이트를 위한 글루함수를 추가
     {
         if(params.ParamCount() == 1)
@@ -344,14 +346,20 @@ void PyZayData::InitWidget()
             auto Msec = sint32(params.Param(0).ToFloat() * 1000);
             mUpdateMsec = Platform::Utility::CurrentTimeMsec() + Msec;
         }
-    })
+    }, "[Msec]", "Msec동안 화면갱신유지")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // reload
     .AddGlue("reload", ZAY_DECLARE_GLUE(params, this)
     {
         ClearDom();
         ListingDomJsons();
         ReloadDom();
         invalidate();
-    })
+    }, "", "전부 다시 로딩")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // setlocale
     .AddGlue("setlocale", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 1)
@@ -359,7 +367,10 @@ void PyZayData::InitWidget()
             gLastLocale = params.Param(0).ToText();
             ZayWidgetDOM::SetValue("program.locale", "'" + gLastLocale + "'");
         }
-    })
+    }, "[Locale:'ko-KR']", "언어코드를 설정")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // setvalue
     .AddGlue("setvalue", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 2)
@@ -372,7 +383,10 @@ void PyZayData::InitWidget()
                 invalidate();
             }
         }
-    })
+    }, "[DomName:'d.aaa.bbb'][Value]", "Value타입 DOM에 값을 설정")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // getcomment
     .AddGlue("getcomment", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 1)
@@ -384,7 +398,10 @@ void PyZayData::InitWidget()
                 params.Return(Value);
             }
         }
-    })
+    }, "[DomName:'d.aaa.bbb']", "Comment타입 DOM의 값을 반환")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // clearvalue
     .AddGlue("clearvalue", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 1)
@@ -396,7 +413,10 @@ void PyZayData::InitWidget()
                 invalidate();
             }
         }
-    })
+    }, "[DomName:'d.aaa.bbb']", "DomName이 포함된 모든 DOM을 제거")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // setdom
     .AddGlue("setdom", ZAY_DECLARE_GLUE(params, this)
     {
         if(2 <= params.ParamCount())
@@ -421,7 +441,10 @@ void PyZayData::InitWidget()
                 invalidate();
             }
         }
-    })
+    }, "[DomName:'d.aaa.bbb'][FilePath:'C:/aaa/bbb.json']", "DomName의 아래에 FilePath의 json을 로딩")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // change
     .AddGlue("change", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 1)
@@ -429,7 +452,28 @@ void PyZayData::InitWidget()
             gNextWidget = params.Param(0).ToText();
             invalidate();
         }
-    });
+    }, "[WidgetName:'a.zay']", "현재 위젯을 widget폴더의 WidgetName으로 변경")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // gettext
+    .AddGlue("gettext", ZAY_DECLARE_GLUE(params, this)
+    {
+        if(params.ParamCount() == 2)
+        {
+            auto Title = params.Param(0).ToText();
+            auto Topic = params.Param(1).ToText();
+            SolverValue OldText;
+            if(params.CanReturn(&OldText))
+            {
+                String GetText = OldText.ToText();
+                if(Platform::Popup::TextDialog(GetText, Title, Topic))
+                {
+                    params.Return("'" + GetText + "'");
+                    invalidate();
+                }
+            }
+        }
+    }, "[Title:'타이틀명'][Topic:'토픽명']", "유저로부터 값을 하나 입력받아 지역변수로 Return처리");
 
     ////////////////////////////////////////////////////////////////////////////////
     // user_content
@@ -831,32 +875,37 @@ bool PyZayData::RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domh
             if(t == GT_Pressed || t == GT_InDragging || t == GT_OutDragging)
             {
                 static sint32 OldX, OldY;
+                static id_clock OldDotMsec = nullptr;
                 static sint32 DotCount;
-                static uint64 DotMsec;
                 if(t == GT_Pressed)
                 {
                     Draging = true;
                     LineCount++;
                     OldX = x + mingap;
                     OldY = y;
+                    Platform::Clock::Release(OldDotMsec);
+                    OldDotMsec = Platform::Clock::CreateAsCurrent();
                     DotCount = 0;
-                    DotMsec = Platform::Utility::CurrentTimeMsec();
                     ZayWidgetDOM::SetValue(DomHeader + "line.count", String::FromInteger(LineCount));
                     ZayWidgetDOM::SetValue(DomHeader + "mode", "'draging'");
                 }
-                if(Draging && mingap <= Math::Distance(OldX, OldY, x, y))
+                const float CurDistance = Math::Distance(OldX, OldY, x, y);
+                if(Draging && mingap <= CurDistance)
                 {
+                    id_clock NewDotMsec = Platform::Clock::CreateAsCurrent();
+                    const sint64 CurDotNsec = Platform::Clock::GetPeriodNsec(OldDotMsec, NewDotMsec);
+                    const auto& CurRect = v->rect(n);
+                    const String DotHeader = DomHeader + String::Format("line.%d.dot.", LineCount - 1);
+                    ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(DotCount + 1));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", DotCount), String::FromInteger(x - CurRect.l));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", DotCount), String::FromInteger(y - CurRect.t));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.speed", DotCount), String::FromFloat(CurDotNsec * 0.0001 / CurDistance));
+                    v->invalidate();
                     OldX = x;
                     OldY = y;
-                    DotCount++;
-                    const auto& CurRect = v->rect(n);
-                    const sint32 CurDotMsec = Platform::Utility::CurrentTimeMsec() - DotMsec;
-                    const String DotHeader = DomHeader + String::Format("line.%d.dot.", LineCount - 1);
-                    ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(DotCount));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", DotCount - 1), String::FromInteger(x - CurRect.l));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", DotCount - 1), String::FromInteger(y - CurRect.t));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.msec", DotCount - 1), String::FromInteger(CurDotMsec));
-                    v->invalidate();
+                    Platform::Clock::Release(OldDotMsec);
+                    OldDotMsec = NewDotMsec;
+                    DotCount++;                    
                 }
             }
             else if(t == GT_InReleased || t == GT_OutReleased || t == GT_CancelReleased)

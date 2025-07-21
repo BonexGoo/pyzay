@@ -17,6 +17,15 @@
 		},
 		{
 			"y2":"0"
+		},
+		{
+			"speed":"0"
+		},
+		{
+			"name":"'user'"
+		},
+		{
+			"userfocus":"-1"
 		}
 	],
 	"posx":"0",
@@ -37,8 +46,8 @@
 				]
 			],
 			"expanded":"1",
-			"posx":"376",
-			"posy":"10",
+			"posx":"390",
+			"posy":"-275",
 			"ui":
 			[
 				{
@@ -46,8 +55,8 @@
 					"compid":"1",
 					"compname":"fill",
 					"expanded":"1",
-					"posx":"759",
-					"posy":"24"
+					"posx":"762",
+					"posy":"-348"
 				}
 			]
 		},
@@ -71,7 +80,139 @@
 			"ui":
 			[
 				{
-					"addw":"0",
+					"addw":"57",
+					"compid":"36",
+					"compname":"loop",
+					"expanded":"1",
+					"posx":"766",
+					"posy":"-23",
+					"ui":
+					[
+						{
+							"addw":"140",
+							"compid":"37",
+							"compname":"xywh",
+							"compvalues":
+							[
+								[
+									"83 * iV",
+									"-31",
+									"80",
+									"30"
+								]
+							],
+							"expanded":"1",
+							"ontouch":
+							[
+								"if(userfocus != iV)",
+								{
+									"userfocus":"iV"
+								},
+								"else",
+								{
+									"userfocus":"-1"
+								}
+							],
+							"posx":"1221",
+							"posy":"-165",
+							"ui":
+							[
+								{
+									"addw":"0",
+									"compid":"38",
+									"compname":"color",
+									"compvalues":
+									[
+										"if(userfocus == iV)",
+										[
+											"128",
+											"160",
+											"255"
+										],
+										"eliffocused('ui_user_'+ iV)",
+										[
+											"192",
+											"192",
+											"224"
+										],
+										"else",
+										[
+											"192",
+											"192",
+											"192"
+										]
+									],
+									"expanded":"1",
+									"posx":"1752",
+									"posy":"-400",
+									"ui":
+									[
+										{
+											"addw":"0",
+											"compid":"39",
+											"compname":"fill",
+											"expanded":"1",
+											"posx":"2144",
+											"posy":"-340"
+										}
+									]
+								},
+								{
+									"addw":"0",
+									"compid":"40",
+									"compname":"color",
+									"compvalues":
+									[
+										[
+											"0",
+											"0",
+											"0"
+										]
+									],
+									"expanded":"1",
+									"posx":"1750",
+									"posy":"-84",
+									"ui":
+									[
+										{
+											"addw":"0",
+											"compid":"41",
+											"compname":"rect",
+											"compvalues":
+											[
+												[
+													"1"
+												]
+											],
+											"expanded":"1",
+											"posx":"2140",
+											"posy":"-182"
+										},
+										{
+											"addw":"50",
+											"compid":"42",
+											"compname":"text",
+											"compvalues":
+											[
+												[
+													"'-'@'d.data.users.'+ iV +'.name'"
+												]
+											],
+											"expanded":"1",
+											"posx":"2139",
+											"posy":"-13"
+										}
+									]
+								}
+							],
+							"uiname":"'ui_user_' + iV"
+						}
+					],
+					"uiloop":"d.data.users.count",
+					"uiname":"i"
+				},
+				{
+					"addw":"276",
 					"comment":"사람추가버튼",
 					"compid":"7",
 					"compname":"xywh",
@@ -85,37 +226,16 @@
 						]
 					],
 					"expanded":"1",
-					"posx":"765",
-					"posy":"216",
-					"ui":
+					"onclick":
 					[
 						{
-							"addw":"0",
-							"compid":"8",
-							"compname":"color",
-							"compvalues":
-							[
-								[
-									"128",
-									"160",
-									"255"
-								]
-							],
-							"expanded":"1",
-							"posx":"1130",
-							"posy":"235",
-							"ui":
-							[
-								{
-									"addw":"0",
-									"compid":"9",
-									"compname":"fill",
-									"expanded":"1",
-									"posx":"1508",
-									"posy":"257"
-								}
-							]
-						},
+							"name":"gettext('사람이름', '이름을 써주세요')"
+						}
+					],
+					"posx":"765",
+					"posy":"226",
+					"ui":
+					[
 						{
 							"addw":"0",
 							"compid":"10",
@@ -129,14 +249,28 @@
 								]
 							],
 							"expanded":"1",
-							"posx":"1129",
-							"posy":"416",
+							"posx":"1410",
+							"posy":"256",
 							"ui":
 							[
 								{
 									"addw":"0",
-									"compid":"11",
-									"compname":"rect",
+									"compid":"44",
+									"compname":"circle",
+									"compvalues":
+									[
+										[
+											{}
+										]
+									],
+									"expanded":"1",
+									"posx":"1797",
+									"posy":"191"
+								},
+								{
+									"addw":"0",
+									"compid":"45",
+									"compname":"inner",
 									"compvalues":
 									[
 										[
@@ -144,8 +278,51 @@
 										]
 									],
 									"expanded":"1",
-									"posx":"1506",
-									"posy":"443"
+									"posx":"1798",
+									"posy":"383",
+									"ui":
+									[
+										{
+											"addw":"0",
+											"compid":"8",
+											"compname":"color",
+											"compvalues":
+											[
+												"iffocused(ui_user_add)",
+												[
+													"-160",
+													"-192",
+													"-255"
+												],
+												"else",
+												[
+													"-128",
+													"-160",
+													"-255"
+												]
+											],
+											"expanded":"1",
+											"posx":"2180",
+											"posy":"365",
+											"ui":
+											[
+												{
+													"addw":"0",
+													"compid":"43",
+													"compname":"circle",
+													"compvalues":
+													[
+														[
+															{}
+														]
+													],
+													"expanded":"1",
+													"posx":"2559",
+													"posy":"390"
+												}
+											]
+										}
+									]
 								},
 								{
 									"addw":"0",
@@ -158,12 +335,13 @@
 										]
 									],
 									"expanded":"1",
-									"posx":"1507",
-									"posy":"626"
+									"posx":"1798",
+									"posy":"612"
 								}
 							]
 						}
-					]
+					],
+					"uiname":"ui_user_add"
 				},
 				{
 					"addw":"0",
@@ -171,15 +349,22 @@
 					"compname":"color",
 					"compvalues":
 					[
+						"if(userfocus != -1)",
 						[
 							"255",
 							"255",
 							"255"
+						],
+						"else",
+						[
+							"224",
+							"224",
+							"224"
 						]
 					],
 					"expanded":"1",
-					"posx":"765",
-					"posy":"675",
+					"posx":"764",
+					"posy":"562",
 					"ui":
 					[
 						{
@@ -187,8 +372,8 @@
 							"compid":"4",
 							"compname":"fill",
 							"expanded":"1",
-							"posx":"1138",
-							"posy":"700"
+							"posx":"1134",
+							"posy":"610"
 						}
 					]
 				},
@@ -198,6 +383,7 @@
 					"compname":"inner",
 					"compvalues":
 					[
+						"if(userfocus != -1)",
 						[
 							"0",
 							"true"
@@ -222,8 +408,8 @@
 								]
 							],
 							"expanded":"1",
-							"posx":"1136",
-							"posy":"862"
+							"posx":"1134",
+							"posy":"863"
 						},
 						{
 							"addw":"56",
@@ -244,7 +430,7 @@
 									"ui":
 									[
 										{
-											"addw":"362",
+											"addw":"381",
 											"compid":"25",
 											"compinputs":
 											[
@@ -259,6 +445,9 @@
 												},
 												{
 													"y2":"0 @'d.point.line.'+ lineV +'.dot.'+ (dotV + 1) +'.y'"
+												},
+												{
+													"speed":"0 @'d.point.line.'+ lineV +'.dot.'+ (dotV + 1) +'.speed'"
 												}
 											],
 											"compname":"code",
@@ -271,11 +460,11 @@
 													"addw":"203",
 													"compname":"if(lineV == lineN - 1 [and] d.point.mode =='draging')",
 													"expanded":"1",
-													"posx":"2938",
-													"posy":"850"
+													"posx":"2937",
+													"posy":"851"
 												},
 												{
-													"addw":"0",
+													"addw":"167",
 													"compid":"22",
 													"compname":"color",
 													"compvalues":
@@ -283,8 +472,8 @@
 														[
 															"0",
 															"0",
-															"0",
-															"128"
+															"255",
+															"(30 + speed * 2) [min] 255"
 														]
 													],
 													"expanded":"1",
@@ -307,115 +496,8 @@
 																]
 															],
 															"expanded":"1",
-															"posx":"3319",
-															"posy":"1042"
-														}
-													]
-												},
-												{
-													"addw":"174",
-													"compid":"26",
-													"compname":"xyrr",
-													"compvalues":
-													[
-														[
-															"x1",
-															"y1",
-															"5",
-															"5"
-														]
-													],
-													"expanded":"1",
-													"posx":"2933",
-													"posy":"1252",
-													"ui":
-													[
-														{
-															"addw":"0",
-															"compid":"28",
-															"compname":"color",
-															"compvalues":
-															[
-																[
-																	"255",
-																	"255",
-																	"0",
-																	"128"
-																]
-															],
-															"expanded":"1",
-															"posx":"3505",
-															"posy":"1271",
-															"ui":
-															[
-																{
-																	"addw":"0",
-																	"compid":"27",
-																	"compname":"circle",
-																	"compvalues":
-																	[
-																		[
-																			{}
-																		]
-																	],
-																	"expanded":"1",
-																	"posx":"3897",
-																	"posy":"1285"
-																}
-															]
-														},
-														{
-															"addw":"0",
-															"compid":"29",
-															"compname":"xyrr",
-															"compvalues":
-															[
-																[
-																	"pW / 2",
-																	"pH + 10",
-																	"30",
-																	"10"
-																]
-															],
-															"expanded":"1",
-															"posx":"3504",
-															"posy":"1492",
-															"ui":
-															[
-																{
-																	"addw":"0",
-																	"compid":"30",
-																	"compname":"color",
-																	"compvalues":
-																	[
-																		[
-																			"0",
-																			"0",
-																			"0"
-																		]
-																	],
-																	"expanded":"1",
-																	"posx":"3910",
-																	"posy":"1536",
-																	"ui":
-																	[
-																		{
-																			"addw":"148",
-																			"compid":"31",
-																			"compname":"text",
-																			"compvalues":
-																			[
-																				[
-																					"'0'@'d.point.line.'+ lineV +'.dot.'+ dotV +'.msec'"
-																				]
-																			],
-																			"expanded":"1",
-																			"posx":"4297",
-																			"posy":"1564"
-																		}
-																	]
-																}
-															]
+															"posx":"3484",
+															"posy":"1066"
 														}
 													]
 												},
@@ -423,11 +505,11 @@
 													"addw":"0",
 													"compname":"else",
 													"expanded":"1",
-													"posx":"2939",
-													"posy":"1667"
+													"posx":"2938",
+													"posy":"1255"
 												},
 												{
-													"addw":"0",
+													"addw":"149",
 													"compid":"32",
 													"compname":"color",
 													"compvalues":
@@ -436,12 +518,12 @@
 															"0",
 															"0",
 															"0",
-															"128"
+															"(30 + speed * 2) [min] 255"
 														]
 													],
 													"expanded":"1",
-													"posx":"2935",
-													"posy":"1774",
+													"posx":"2938",
+													"posy":"1399",
 													"ui":
 													[
 														{
@@ -455,12 +537,12 @@
 																	"y1",
 																	"x2",
 																	"y2",
-																	"1"
+																	"2"
 																]
 															],
 															"expanded":"1",
-															"posx":"3321",
-															"posy":"1855"
+															"posx":"3465",
+															"posy":"1453"
 														}
 													]
 												}

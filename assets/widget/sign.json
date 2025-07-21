@@ -1,6 +1,11 @@
 {
+    "users":
+    [
+        {"name" : "user1"},
+        {"name" : "user2"}
+    ],
     "fonts":
-	[
-		{"path" : "font/Montserrat-VariableFont_wght.ttf"}
-	]
+    [
+        {"path" : "font/Montserrat-VariableFont_wght.ttf"}
+    ]
 }
