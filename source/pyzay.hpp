@@ -11,27 +11,6 @@ public:
 };
 typedef Map<DomJson> DomJsons;
 
-class GlueCall
-{
-public:
-    GlueCall() {}
-    ~GlueCall() {}
-    BOSS_DECLARE_NONCOPYABLE_CLASS(GlueCall)
-
-public:
-    String mName;
-    Strings mParams;
-    uint64 mMsec {0};
-    GlueCall& operator=(GlueCall&& rhs)
-    {
-        mName = ToReference(rhs.mName);
-        mParams = ToReference(rhs.mParams);
-        mMsec = rhs.mMsec; rhs.mMsec = 0;
-        return *this;
-    }
-};
-typedef Array<GlueCall> GlueCalls;
-
 class UrlImage
 {
 public:
@@ -47,6 +26,25 @@ public:
     id_tasking mTasking {nullptr};
 };
 typedef Map<UrlImage> UrlImages;
+
+class DragGesture
+{
+public:
+    DragGesture() {}
+    ~DragGesture() {}
+    BOSS_DECLARE_NONCOPYABLE_CLASS(DragGesture)
+
+public:
+    struct Dot
+    {
+        sint32 mX;
+        sint32 mY;
+        double mSpeed;
+    };
+    typedef Array<Dot> Shape;
+    Array<Shape> mShapes;
+};
+typedef Map<DragGesture> DragGestures;
 
 class PyZayData : public ZayObject
 {
@@ -71,7 +69,7 @@ public:
     void RenderWindowOutline(ZayPanel& panel);
     bool RenderUC_ClearBG(ZayPanel& panel, sint32 round);
     bool RenderUC_UrlImage(ZayPanel& panel, double fadesec, chars url);
-    bool RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domheader, sint32 mingap);
+    bool RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domheader, chars username, sint32 mingap);
 
 public:
     ZayWidget* mWidget {new ZayWidget()};
@@ -85,5 +83,8 @@ public:
     CursorRole mNowCursor {CR_Arrow};
     DomJsons mDomJsons; // [filename]
     UrlImages mUrlImages; // [url]
-    GlueCalls mReservedGlueCalls;
+
+public:
+    String mFocusedUser;
+    DragGestures mUserGestures; // [username]
 };

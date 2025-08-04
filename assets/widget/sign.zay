@@ -22,10 +22,7 @@
 			"speed":"0"
 		},
 		{
-			"name":"'user'"
-		},
-		{
-			"userfocus":"-1"
+			"username":"''"
 		}
 	],
 	"posx":"0",
@@ -89,7 +86,7 @@
 					"ui":
 					[
 						{
-							"addw":"140",
+							"addw":"324",
 							"compid":"37",
 							"compname":"xywh",
 							"compvalues":
@@ -104,26 +101,26 @@
 							"expanded":"1",
 							"ontouch":
 							[
-								"if(userfocus != iV)",
+								"if(username != (''@'d.users.'+ iV +'.name'))",
 								{
-									"userfocus":"iV"
+									"username":"''@'d.users.'+ iV +'.name'"
 								},
 								"else",
 								{
-									"userfocus":"-1"
+									"username":"''"
 								}
 							],
-							"posx":"1221",
-							"posy":"-165",
+							"posx":"1197",
+							"posy":"-153",
 							"ui":
 							[
 								{
-									"addw":"0",
+									"addw":"156",
 									"compid":"38",
 									"compname":"color",
 									"compvalues":
 									[
-										"if(userfocus == iV)",
+										"if(username == (''@'d.users.'+ iV +'.name'))",
 										[
 											"128",
 											"160",
@@ -143,8 +140,8 @@
 										]
 									],
 									"expanded":"1",
-									"posx":"1752",
-									"posy":"-400",
+									"posx":"1894",
+									"posy":"-454",
 									"ui":
 									[
 										{
@@ -152,8 +149,8 @@
 											"compid":"39",
 											"compname":"fill",
 											"expanded":"1",
-											"posx":"2144",
-											"posy":"-340"
+											"posx":"2411",
+											"posy":"-402"
 										}
 									]
 								},
@@ -170,8 +167,8 @@
 										]
 									],
 									"expanded":"1",
-									"posx":"1750",
-									"posy":"-84",
+									"posx":"1898",
+									"posy":"-71",
 									"ui":
 									[
 										{
@@ -185,8 +182,8 @@
 												]
 											],
 											"expanded":"1",
-											"posx":"2140",
-											"posy":"-182"
+											"posx":"2288",
+											"posy":"-169"
 										},
 										{
 											"addw":"50",
@@ -195,12 +192,12 @@
 											"compvalues":
 											[
 												[
-													"'-'@'d.data.users.'+ iV +'.name'"
+													"'-'@'d.users.'+ iV +'.name'"
 												]
 											],
 											"expanded":"1",
-											"posx":"2139",
-											"posy":"-13"
+											"posx":"2287",
+											"posy":"0"
 										}
 									]
 								}
@@ -208,7 +205,7 @@
 							"uiname":"'ui_user_' + iV"
 						}
 					],
-					"uiloop":"d.data.users.count",
+					"uiloop":"d.users.count",
 					"uiname":"i"
 				},
 				{
@@ -229,8 +226,9 @@
 					"onclick":
 					[
 						{
-							"name":"gettext('사람이름', '이름을 써주세요')"
-						}
+							"username":"gettext('사람이름', '이름을 써주세요')"
+						},
+						"adduser(username)"
 					],
 					"posx":"765",
 					"posy":"226",
@@ -349,7 +347,7 @@
 					"compname":"color",
 					"compvalues":
 					[
-						"if(userfocus != -1)",
+						"if(username !='')",
 						[
 							"255",
 							"255",
@@ -383,7 +381,7 @@
 					"compname":"inner",
 					"compvalues":
 					[
-						"if(userfocus != -1)",
+						"if(username !='')",
 						[
 							"0",
 							"true"
@@ -395,15 +393,16 @@
 					"ui":
 					[
 						{
-							"addw":"115",
+							"addw":"183",
 							"compid":"20",
 							"compname":"user_content",
 							"compvalues":
 							[
 								[
 									"'dragcollector'",
-									"'ui_point'",
-									"'d.point'",
+									"'ui_dragzone'",
+									"'d.sign'",
+									"username",
 									"5"
 								]
 							],
@@ -435,19 +434,19 @@
 											"compinputs":
 											[
 												{
-													"x1":"0 @'d.point.line.'+ lineV +'.dot.'+ dotV +'.x'"
+													"x1":"0 @'d.sign.line.'+ lineV +'.dot.'+ dotV +'.x'"
 												},
 												{
-													"y1":"0 @'d.point.line.'+ lineV +'.dot.'+ dotV +'.y'"
+													"y1":"0 @'d.sign.line.'+ lineV +'.dot.'+ dotV +'.y'"
 												},
 												{
-													"x2":"0 @'d.point.line.'+ lineV +'.dot.'+ (dotV + 1) +'.x'"
+													"x2":"0 @'d.sign.line.'+ lineV +'.dot.'+ (dotV + 1) +'.x'"
 												},
 												{
-													"y2":"0 @'d.point.line.'+ lineV +'.dot.'+ (dotV + 1) +'.y'"
+													"y2":"0 @'d.sign.line.'+ lineV +'.dot.'+ (dotV + 1) +'.y'"
 												},
 												{
-													"speed":"0 @'d.point.line.'+ lineV +'.dot.'+ (dotV + 1) +'.speed'"
+													"speed":"0 @'d.sign.line.'+ lineV +'.dot.'+ (dotV + 1) +'.speed'"
 												}
 											],
 											"compname":"code",
@@ -549,11 +548,11 @@
 											]
 										}
 									],
-									"uiloop":"(0 @ 'd.point.line.' + lineV + '.dot.count') - 1",
+									"uiloop":"(0 @ 'd.sign.line.' + lineV + '.dot.count') - 1",
 									"uiname":"dot"
 								}
 							],
-							"uiloop":"d.point.line.count",
+							"uiloop":"d.sign.line.count",
 							"uiname":"line"
 						}
 					]

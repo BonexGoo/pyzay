@@ -25,17 +25,6 @@ ZAY_VIEW_API OnCommand(CommandType type, id_share in, id_cloned_share* out)
         // 위젯변경 체크
         if(m->CheckWidget())
             m->invalidate();
-
-        // GlueCall처리
-        for(sint32 i = m->mReservedGlueCalls.Count() - 1; 0 <= i; --i)
-        {
-            auto& CurGlue = m->mReservedGlueCalls[i];
-            if(CurGlue.mMsec <= CurMsec)
-            {
-                m->mWidget->GlueCall(CurGlue.mName, CurGlue.mParams);
-                m->mReservedGlueCalls.SubtractionSection(i);
-            }
-        }
     }
     else if(type == CT_Size)
     {
@@ -444,8 +433,8 @@ void PyZayData::InitWidget()
     }, "[DomName:'d.aaa.bbb'][FilePath:'C:/aaa/bbb.json']", "DomName의 아래에 FilePath의 json을 로딩")
 
     ////////////////////////////////////////////////////////////////////////////////
-    // change
-    .AddGlue("change", ZAY_DECLARE_GLUE(params, this)
+    // changewidget
+    .AddGlue("changewidget", ZAY_DECLARE_GLUE(params, this)
     {
         if(params.ParamCount() == 1)
         {
@@ -473,7 +462,26 @@ void PyZayData::InitWidget()
                 }
             }
         }
-    }, "[Title:'타이틀명'][Topic:'토픽명']", "유저로부터 값을 하나 입력받아 지역변수로 Return처리");
+    }, "[Title:'타이틀명'][Topic:'토픽명']", "유저로부터 값을 하나 입력받아 지역변수로 Return처리")
+
+    ////////////////////////////////////////////////////////////////////////////////
+    // adduser
+    .AddGlue("adduser", ZAY_DECLARE_GLUE(params, this)
+    {
+        if(params.ParamCount() == 1)
+        {
+            auto UserName = params.Param(0).ToText();
+            mUserGestures(UserName);
+            ZayWidgetDOM::RemoveVariables("users.");
+            for(sint32 i = 0, iend = mUserGestures.Count(); i < iend; ++i)
+            {
+                chararray GetUserName;
+                mUserGestures.AccessByOrder(i, &GetUserName);
+                ZayWidgetDOM::SetValue(String::Format("users.%d.name", i), "'" + String(GetUserName) + "'");
+            }
+            ZayWidgetDOM::SetValue("users.count", String::FromInteger(mUserGestures.Count()));
+        }
+    }, "[UserName:'유저명']", "유저를 추가");
 
     ////////////////////////////////////////////////////////////////////////////////
     // user_content
@@ -504,15 +512,16 @@ void PyZayData::InitWidget()
         }
         jump(!Type.Compare("dragcollector"))
         {
-            if(params.ParamCount() == 4)
+            if(params.ParamCount() == 5)
             {
                 auto UIName = params.Param(1).ToText();
                 auto DomName = params.Param(2).ToText();
-                auto MinGap = params.Param(3).ToInteger();
+                auto UserName = params.Param(3).ToText();
+                auto MinGap = params.Param(4).ToInteger();
                 if(DomName.Left(2) == "d.")
                 {
                     const String DomHeader = DomName.Offset(2) + '.';
-                    HasRender = RenderUC_DragCollector(panel, UIName, DomHeader, MinGap);
+                    HasRender = RenderUC_DragCollector(panel, UIName, DomHeader, UserName, MinGap);
                 }
             }
         }
@@ -864,48 +873,76 @@ bool PyZayData::RenderUC_UrlImage(ZayPanel& panel, double fadesec, chars url)
     return true;
 }
 
-bool PyZayData::RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domheader, sint32 mingap)
+bool PyZayData::RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domheader, chars username, sint32 mingap)
 {
+    // 유저포커싱 변경
     const String DomHeader = domheader;
+    if(mFocusedUser != username)
+    {
+        mFocusedUser = username;
+        ZayWidgetDOM::RemoveVariables(DomHeader);
+        if(auto CurGesture = mUserGestures.Access(mFocusedUser))
+        {
+            const sint32 ShapeCount = CurGesture->mShapes.Count();
+            for(sint32 i = 0; i < ShapeCount; ++i)
+            {
+                const String DotHeader = DomHeader + String::Format("line.%d.dot.", i);
+                const sint32 DotCount = CurGesture->mShapes[i].Count();
+                for(sint32 j = 0; j < DotCount; ++j)
+                {
+                    const auto& CurDot = CurGesture->mShapes[i][j];
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", j), String::FromInteger(CurDot.mX));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", j), String::FromInteger(CurDot.mY));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.speed", j), String::FromFloat(CurDot.mSpeed));
+                }
+                ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(DotCount));
+            }
+            ZayWidgetDOM::SetValue(DomHeader + "line.count", String::FromInteger(ShapeCount));
+        }
+    }
+
+    // 제스처 수집
     ZAY_INNER_UI(panel, 0, uiname,
-        ZAY_GESTURE_VNTXY(v, n, t, x, y, DomHeader, mingap)
+        ZAY_GESTURE_VNTXY(v, n, t, x, y, this, DomHeader, mingap)
         {
             static bool Draging = false;
-            static sint32 LineCount = 0;
             if(t == GT_Pressed || t == GT_InDragging || t == GT_OutDragging)
             {
                 static sint32 OldX, OldY;
                 static id_clock OldDotMsec = nullptr;
-                static sint32 DotCount;
+                auto& CurGesture = mUserGestures(mFocusedUser);
                 if(t == GT_Pressed)
                 {
                     Draging = true;
-                    LineCount++;
                     OldX = x + mingap;
                     OldY = y;
                     Platform::Clock::Release(OldDotMsec);
                     OldDotMsec = Platform::Clock::CreateAsCurrent();
-                    DotCount = 0;
-                    ZayWidgetDOM::SetValue(DomHeader + "line.count", String::FromInteger(LineCount));
+                    CurGesture.mShapes.AtAdding();
+                    ZayWidgetDOM::SetValue(DomHeader + "line.count", String::FromInteger(CurGesture.mShapes.Count()));
                     ZayWidgetDOM::SetValue(DomHeader + "mode", "'draging'");
                 }
+                auto& LastShape = CurGesture.mShapes.At(-1);
                 const float CurDistance = Math::Distance(OldX, OldY, x, y);
                 if(Draging && mingap <= CurDistance)
                 {
                     id_clock NewDotMsec = Platform::Clock::CreateAsCurrent();
                     const sint64 CurDotNsec = Platform::Clock::GetPeriodNsec(OldDotMsec, NewDotMsec);
                     const auto& CurRect = v->rect(n);
-                    const String DotHeader = DomHeader + String::Format("line.%d.dot.", LineCount - 1);
-                    ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(DotCount + 1));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", DotCount), String::FromInteger(x - CurRect.l));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", DotCount), String::FromInteger(y - CurRect.t));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.speed", DotCount), String::FromFloat(CurDotNsec * 0.0001 / CurDistance));
+                    const String DotHeader = DomHeader + String::Format("line.%d.dot.", CurGesture.mShapes.Count() - 1);
+                    auto& NewDot = LastShape.AtAdding();
+                    NewDot.mX = x - CurRect.l;
+                    NewDot.mY = y - CurRect.t;
+                    NewDot.mSpeed = CurDotNsec * 0.0001 / CurDistance;
+                    ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(LastShape.Count()));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", LastShape.Count() - 1), String::FromInteger(NewDot.mX));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", LastShape.Count() - 1), String::FromInteger(NewDot.mY));
+                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.speed", LastShape.Count() - 1), String::FromFloat(NewDot.mSpeed));
                     v->invalidate();
                     OldX = x;
                     OldY = y;
                     Platform::Clock::Release(OldDotMsec);
                     OldDotMsec = NewDotMsec;
-                    DotCount++;                    
                 }
             }
             else if(t == GT_InReleased || t == GT_OutReleased || t == GT_CancelReleased)
@@ -916,10 +953,14 @@ bool PyZayData::RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domh
             else if(t == GT_ExtendPressed)
             {
                 Draging = false;
-                LineCount = 0;
                 ZayWidgetDOM::RemoveVariables(DomHeader);
+                if(auto CurGesture = mUserGestures.Access(mFocusedUser))
+                    CurGesture->mShapes.Clear();
                 v->invalidate();
             }
-        });
+        })
+    {
+        // 직접 그리지는 않음
+    }
     return true;
 }
