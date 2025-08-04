@@ -12,17 +12,7 @@ extern sint32 gMinWindowHeight;
 
 bool PlatformInit()
 {
-    #if BOSS_WASM
-        Platform::InitForMDI(true, false, nullptr);
-    #else
-        Platform::InitForMDI(true, false, nullptr,
-            Platform::File::RootForAssets() + "webpython/pyodide.html");
-    #endif
-
-    Platform::SetViewCreator(ZayView::Creator);
-    Platform::SetWindowName("pyzay");
-
-    // 윈도우 위치설정
+    // 윈도우 불러오기
     String WindowInfoString = String::FromAsset("windowinfo.json");
     Context WindowInfo(ST_Json, SO_OnlyReference, WindowInfoString, WindowInfoString.Length());
     gNextWidget = WindowInfo("widget").GetText("sign");
@@ -38,7 +28,7 @@ bool PlatformInit()
     const sint32 WindowY = Math::Clamp(WindowInfo("y").GetInt((ScreenHeight - WindowHeight) / 2), 0, ScreenHeight - WindowHeight);
     Platform::SetWindowRect(ScreenRect.l + WindowX, ScreenRect.t + WindowY, WindowWidth, WindowHeight);
 
-    // 아틀라스 동적로딩
+    // 아틀라스 불러오기
     R::SetAtlasDir("image");
     Platform::AddProcedure(PE_100MSEC,
         [](payload data)->void
@@ -50,13 +40,17 @@ bool PlatformInit()
             }
         });
 
+    // 윈도우 설정
+    Platform::InitForMDI(true, false, nullptr, Platform::File::RootForAssets() + "webpython/pyodide.html");
+    Platform::SetViewCreator(ZayView::Creator);
+    Platform::SetWindowName("pyzay");
     Platform::SetWindowView("PyZayView");
     return true;
 }
 
 void PlatformQuit()
 {
-    // 윈도우
+    // 윈도우 저장하기
     const rect128 WindowRect = Platform::GetWindowRect(true);
     const sint32 ScreenID = Platform::Utility::GetScreenID(
         {(WindowRect.l + WindowRect.r) / 2, (WindowRect.t + WindowRect.b) / 2});
@@ -72,7 +66,7 @@ void PlatformQuit()
     WindowInfo.At("h").Set(String::FromInteger(WindowRect.b - WindowRect.t));
     WindowInfo.SaveJson().ToAsset("windowinfo.json", true);
 
-    // 아틀라스
+    // 아틀라스 저장하기
     Context AtlasInfo;
     R::SaveAtlas(AtlasInfo);
     AtlasInfo.SaveJson().ToAsset("atlasinfo.json", true);
