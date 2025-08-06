@@ -31,11 +31,13 @@
     <ClInclude Include="..\source-gen\boss_assets.hpp" />
     <ClInclude Include="..\source-gen\boss_buildtag.hpp" />
     <ClInclude Include="..\source-gen\boss_config.h" />
+    <ClInclude Include="..\source\pz_drag_gesture.hpp" />
     <ClInclude Include="..\source\resource.hpp" />
     <ClInclude Include="..\source\pyzay.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\main.cpp" />
+    <ClCompile Include="..\source\pz_drag_gesture.cpp" />
     <ClCompile Include="..\source\resource.cpp" />
     <ClCompile Include="..\source\pyzay.cpp" />
   </ItemGroup>

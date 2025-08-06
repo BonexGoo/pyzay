@@ -42,6 +42,9 @@
     <ClInclude Include="..\source\pyzay.hpp">
       <Filter>source</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\pz_drag_gesture.hpp">
+      <Filter>source</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\main.cpp">
@@ -51,6 +54,9 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\source\pyzay.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\pz_drag_gesture.cpp">
       <Filter>source</Filter>
     </ClCompile>
   </ItemGroup>

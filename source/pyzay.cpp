@@ -26,10 +26,6 @@ ZAY_VIEW_API OnCommand(CommandType type, id_share in, id_cloned_share* out)
         if(m->CheckWidget())
             m->invalidate();
     }
-    else if(type == CT_Size)
-    {
-        sint32s WH(in);
-    }
     else if(type == CT_Activate && !boolo(in).ConstValue())
         m->clearCapture();
 }
@@ -211,6 +207,27 @@ PyZayData::PyZayData()
             Self->ListingDomJsons();
             Self->ReloadDom();
         }, this);
+
+    // 로드
+    Context Files;
+    if(auto NewPath = AssetPath::Create())
+    {
+        AssetPath::AddPath(NewPath, "gesture");
+        AssetPath::Search(NewPath, [](chars filepath, chars filename, payload data)->void
+            {
+                auto& UserGestures = *((PzDragGestures*) data);
+                const String FileName(filename);
+                if(!FileName.Right(5).CompareNoCase(".json"))
+                {
+                    const String FileTitle = FileName.Left(FileName.Length() - 5);
+                    UserGestures(FileTitle).LoadJson(String::FromAsset("gesture/" + FileName));
+                    static sint32 UserCount = 0;
+                    ZayWidgetDOM::SetValue(String::Format("users.%d.name", UserCount), "'" + FileTitle + "'");
+                    ZayWidgetDOM::SetValue("users.count", String::FromInteger(++UserCount));
+                }
+            }, &mUserGestures);
+        AssetPath::Release(NewPath);
+    }
 }
 
 PyZayData::~PyZayData()
@@ -218,6 +235,17 @@ PyZayData::~PyZayData()
     for(sint32 i = 0, iend = mUrlImages.Count(); i < iend; ++i)
         if(auto CurUrlImage = mUrlImages.AccessByOrder(i))
             Tasking::Release(CurUrlImage->mTasking, true);
+
+    // 세이브
+    for(sint32 i = 0, iend = mUserGestures.Count(); i < iend; ++i)
+    {
+        chararray GetUserName;
+        if(auto CurGesture = mUserGestures.AccessByOrder(i, &GetUserName))
+        {
+            auto NewJson = CurGesture->SaveJson();
+            NewJson.ToAsset(String::Format("gesture/%s.json", &GetUserName[0]), true);
+        }
+    }
 }
 
 bool PyZayData::IsFullScreen()
@@ -876,32 +904,16 @@ bool PyZayData::RenderUC_UrlImage(ZayPanel& panel, double fadesec, chars url)
 bool PyZayData::RenderUC_DragCollector(ZayPanel& panel, chars uiname, chars domheader, chars username, sint32 mingap)
 {
     // 유저포커싱 변경
-    const String DomHeader = domheader;
     if(mFocusedUser != username)
     {
         mFocusedUser = username;
-        ZayWidgetDOM::RemoveVariables(DomHeader);
+        ZayWidgetDOM::RemoveVariables(domheader);
         if(auto CurGesture = mUserGestures.Access(mFocusedUser))
-        {
-            const sint32 ShapeCount = CurGesture->mShapes.Count();
-            for(sint32 i = 0; i < ShapeCount; ++i)
-            {
-                const String DotHeader = DomHeader + String::Format("line.%d.dot.", i);
-                const sint32 DotCount = CurGesture->mShapes[i].Count();
-                for(sint32 j = 0; j < DotCount; ++j)
-                {
-                    const auto& CurDot = CurGesture->mShapes[i][j];
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.x", j), String::FromInteger(CurDot.mX));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.y", j), String::FromInteger(CurDot.mY));
-                    ZayWidgetDOM::SetValue(DotHeader + String::Format("%d.speed", j), String::FromFloat(CurDot.mSpeed));
-                }
-                ZayWidgetDOM::SetValue(DotHeader + "count", String::FromInteger(DotCount));
-            }
-            ZayWidgetDOM::SetValue(DomHeader + "line.count", String::FromInteger(ShapeCount));
-        }
+            CurGesture->UpdateDom(domheader);
     }
 
     // 제스처 수집
+    const String DomHeader = domheader;
     ZAY_INNER_UI(panel, 0, uiname,
         ZAY_GESTURE_VNTXY(v, n, t, x, y, this, DomHeader, mingap)
         {

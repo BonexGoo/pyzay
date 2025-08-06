@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <service/boss_zaywidget.hpp>
+#include "pz_drag_gesture.hpp"
 
 class DomJson
 {
@@ -26,25 +27,6 @@ public:
     id_tasking mTasking {nullptr};
 };
 typedef Map<UrlImage> UrlImages;
-
-class DragGesture
-{
-public:
-    DragGesture() {}
-    ~DragGesture() {}
-    BOSS_DECLARE_NONCOPYABLE_CLASS(DragGesture)
-
-public:
-    struct Dot
-    {
-        sint32 mX;
-        sint32 mY;
-        double mSpeed;
-    };
-    typedef Array<Dot> Shape;
-    Array<Shape> mShapes;
-};
-typedef Map<DragGesture> DragGestures;
 
 class PyZayData : public ZayObject
 {
@@ -86,5 +68,5 @@ public:
 
 public:
     String mFocusedUser;
-    DragGestures mUserGestures; // [username]
+    PzDragGestures mUserGestures; // [username]
 };
